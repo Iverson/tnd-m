@@ -1,2 +1,2 @@
-server '127.0.0.1', user: 'deploy', port: 2222, roles: [:web, :app, :db], primary: true
+server '109.234.34.240', user: 'deploy', port: 22, roles: [:web, :app, :db], primary: true
 set :branch, ENV['BRANCH'] || 'develop'
