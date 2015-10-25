@@ -23,4 +23,4 @@ production:
   <<: *default
   database: app_tnd-m
   username: deploy
-  password: <%= ENV['TENDERS_DATABASE_PASSWORD'] %>
+  password:
