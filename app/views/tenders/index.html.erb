@@ -9,8 +9,11 @@
 <h1 class="page-header">
   Тендеры
 </h1>
-<%= link_to "Выгрузить в .csv", export_tenders_path(format: "csv"), class: "btn btn-default" %>
-<%= link_to "Выгрузить в .xls", export_tenders_path(format: "xls"), class: "btn btn-default" %>
+
+<% unless @tenders.empty? %>
+  <%= link_to "Выгрузить в .csv", export_tenders_path(format: "csv"), class: "btn btn-default" %>
+  <%= link_to "Выгрузить в .xls", export_tenders_path(format: "xls"), class: "btn btn-default" %>
+<% end %>
 
 <div class="table-responsive">
   <table class="table table-hover table-fixed">
