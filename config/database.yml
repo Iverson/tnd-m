@@ -48,12 +48,12 @@ test:
 #
 staging:
   <<: *default
-  database: tenders_staging
+  database: app_tnd-m
   username: deploy
   password:
 
 production:
   <<: *default
-  database: tenders_production
+  database: app_tnd-m
   username: deploy
   password: <%= ENV['TENDERS_DATABASE_PASSWORD'] %>
