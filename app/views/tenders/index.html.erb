@@ -1,0 +1,50 @@
+<%= form_tag import_tenders_path, multipart: true, class: "form-inline pull-right" do %>
+  <div class="form-group">
+    <!-- <%= label_tag "Импорт" %> -->
+    <%= file_field_tag :file %>
+    <!-- <p class="help-block">Поддерживается формат .xls</p> -->
+  </div>
+  <%= submit_tag 'Загрузить', class: "btn btn-default" %>
+<% end %>
+<h1 class="page-header">
+  Тендеры
+</h1>
+<%= link_to "Выгрузить в .csv", export_tenders_path(format: "csv"), class: "btn btn-default" %>
+<%= link_to "Выгрузить в .xls", export_tenders_path(format: "xls"), class: "btn btn-default" %>
+
+<div class="table-responsive">
+  <table class="table table-hover table-fixed">
+    <thead>
+      <tr>
+        <th width="100">Seldon Id</th>
+        <th>Название</th>
+        <th>Заказчик</th>
+        <!-- <th width="200">milestones</th> -->
+        <th width="100">Ссылка</th>
+        <th width="100">Дата начала</th>
+        <th width="100">Дата окончания</th>
+        <th width="130">Начальная макс. цена, руб.</th>
+        <!-- <th>docs_deadline</th> -->
+        <!-- <th>approve_deadline</th> -->
+        <!-- <th>completion_date</th> -->
+      </tr>
+    </thead>
+    <tbody>
+      <% @tenders.each do |tender| %>
+      <tr>
+        <td><%= tender.seldon_id %></td>
+        <td><%= link_to tender.name, tender %></td>
+        <td><%= tender.customer %></td>
+        <!-- <td><%= tender.milestones %></td> -->
+        <td><%= link_to "zkupki.gov.ru", tender.url, target: "_blank" %></td>
+        <td><%= tender.start_date %></td>
+        <td><%= tender.end_date %></td>
+        <td><%= tender.start_max_price %></td>
+        <!-- <td><%= tender.docs_deadline %></td> -->
+        <!-- <td><%= tender.approve_deadline %></td> -->
+        <!-- <td><%= tender.completion_date %></td> -->
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

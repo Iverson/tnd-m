@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String">№ п/п</Data></Cell>
+        <Cell><Data ss:Type="String">Индивидуальный номер в системе Seldon</Data></Cell>
+        <Cell><Data ss:Type="String">Название процедуры закупки</Data></Cell>
+        <Cell><Data ss:Type="String">Наименование заказчика</Data></Cell>
+        <Cell><Data ss:Type="String">Этапы работ (из ТЗ, КП, ПД, КД) </Data></Cell>
+        <Cell><Data ss:Type="String">Ссылка на процедуру закупки</Data></Cell>
+        <Cell><Data ss:Type="String">Дата начала приема заявок</Data></Cell>
+        <Cell><Data ss:Type="String">Дата окончания приема заявок</Data></Cell>
+        <Cell><Data ss:Type="String">Начальная максимальная цена, руб.</Data></Cell>
+        <Cell><Data ss:Type="String">Срок предоставления документов в  КО для участия в процедуре закупки </Data></Cell>
+        <Cell><Data ss:Type="String">Срок утверждения Карточки проекта PRE-SALE</Data></Cell>
+        <Cell><Data ss:Type="String">Срок окончания работ</Data></Cell>
+        <Cell><Data ss:Type="String">Комментарии</Data></Cell>
+      </Row>
+    <% @tenders.each_with_index do |tender, index| %>
+      <Row>
+        <Cell><Data ss:Type="Number"><%= index+1 %></Data></Cell>
+        <Cell><Data ss:Type="Number"><%= tender.seldon_id %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= tender.name %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= tender.customer %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= tender.milestones %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= tender.start_date %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= tender.end_date %></Data></Cell>
+        <Cell><Data ss:Type="Number"><%= tender.start_max_price %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= tender.docs_deadline %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= tender.approve_deadline %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= tender.completion_date %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= tender.comments %></Data></Cell>
+      </Row>
+    <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>
