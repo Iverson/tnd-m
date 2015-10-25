@@ -10,12 +10,11 @@
 #   http://dev.mysql.com/doc/refman/5.0/en/old-client.html
 #
 default: &default
-  adapter: mysql2
-  encoding: utf8
+  adapter: postgresql
+  encoding: unicode
   pool: 5
-  username: root
+  username: postgres
   password:
-  host: localhost
 
 development:
   <<: *default
@@ -48,17 +47,11 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 staging:
-  adapter: postgresql
-  encoding: unicode
   database: tenders_staging
-  pool: 5
   username: deploy
   password:
 
 production:
-  adapter: postgresql
-  encoding: unicode
   database: tenders_production
-  pool: 5
   username: deploy
   password: <%= ENV['TENDERS_DATABASE_PASSWORD'] %>

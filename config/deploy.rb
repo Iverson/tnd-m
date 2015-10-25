@@ -1,7 +1,7 @@
 # Change these
 
 set :application, 'tnd-m'
-set :repo_url, 'https://github.com/your_account/your_repo.git'
+set :repo_url, 'https://github.com/Iverson/tnd-m.git'
 set :deploy_to, '/www/tnd-m'
 set :log_level, :debug
 set :linked_files, %w{config/database.yml}

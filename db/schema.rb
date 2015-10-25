@@ -13,49 +13,52 @@
 
 ActiveRecord::Schema.define(version: 20151024193517) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "comments", force: :cascade do |t|
-    t.text     "message",          limit: 65535
-    t.integer  "user_id",          limit: 4
-    t.integer  "commentable_id",   limit: 4
-    t.string   "commentable_type", limit: 255
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.text     "message"
+    t.integer  "user_id"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
   add_index "comments", ["commentable_id"], name: "index_comments_on_commentable_id", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "tenders", force: :cascade do |t|
-    t.string   "name",             limit: 255
-    t.integer  "seldon_id",        limit: 4
-    t.string   "customer",         limit: 255
-    t.text     "milestones",       limit: 65535
-    t.string   "url",              limit: 255
+    t.string   "name"
+    t.integer  "seldon_id"
+    t.string   "customer"
+    t.text     "milestones"
+    t.string   "url"
     t.date     "start_date"
     t.date     "end_date"
-    t.float    "start_max_price",  limit: 24
+    t.float    "start_max_price"
     t.date     "docs_deadline"
     t.date     "approve_deadline"
     t.date     "completion_date"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "name",                   limit: 255, default: "",     null: false
-    t.string   "role",                   limit: 255, default: "user", null: false
-    t.string   "email",                  limit: 255, default: "",     null: false
-    t.string   "encrypted_password",     limit: 255, default: "",     null: false
-    t.string   "reset_password_token",   limit: 255
+    t.string   "name",                   default: "",     null: false
+    t.string   "role",                   default: "user", null: false
+    t.string   "email",                  default: "",     null: false
+    t.string   "encrypted_password",     default: "",     null: false
+    t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          limit: 4,   default: 0,      null: false
+    t.integer  "sign_in_count",          default: 0,      null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip",     limit: 255
-    t.string   "last_sign_in_ip",        limit: 255
-    t.datetime "created_at",                                          null: false
-    t.datetime "updated_at",                                          null: false
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
