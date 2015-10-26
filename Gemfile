@@ -35,10 +35,10 @@ gem 'roo-xls'
 gem 'unicorn'
 
 # Use Capistrano for deployment
-gem 'capistrano', '~> 3.2.1'
+gem 'capistrano', '~> 3.4.0'
 gem 'capistrano-rails',   require: false
 gem 'capistrano-bundler', require: false
-gem 'capistrano-unicorn-nginx', '~> 3.2.0'
+gem 'capistrano-unicorn-nginx', '~> 3.4.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
