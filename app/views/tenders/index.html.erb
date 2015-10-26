@@ -27,6 +27,7 @@
         <th width="100">Дата начала</th>
         <th width="100">Дата окончания</th>
         <th width="130">Начальная макс. цена, руб.</th>
+        <th width="80"></th>
         <!-- <th>docs_deadline</th> -->
         <!-- <th>approve_deadline</th> -->
         <!-- <th>completion_date</th> -->
@@ -43,6 +44,9 @@
         <td><%= tender.start_date %></td>
         <td><%= tender.end_date %></td>
         <td><%= tender.start_max_price %></td>
+        <td class="text-right">
+          <%= link_to "Удалить", tender_path(tender), class: "btn btn-danger btn-xs", :method => :delete %>
+        </td>
         <!-- <td><%= tender.docs_deadline %></td> -->
         <!-- <td><%= tender.approve_deadline %></td> -->
         <!-- <td><%= tender.completion_date %></td> -->

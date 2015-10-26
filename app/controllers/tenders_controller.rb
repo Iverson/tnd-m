@@ -1,12 +1,22 @@
 class TendersController < ApplicationController
   load_and_authorize_resource :tender
+  before_action :set_tender, only: [:show, :edit, :update, :destroy]
 
   def index
     @tenders = Tender.all
   end
 
   def show
-    @tender = Tender.find(params[:id])
+  end
+
+  # DELETE /tenders/1
+  # DELETE /tenders/1.json
+  def destroy
+    @tender.destroy
+    respond_to do |format|
+      format.html { redirect_to tenders_url, notice: 'Тендер успешно удален.' }
+      format.json { head :no_content }
+    end
   end
 
   def export
@@ -48,7 +58,7 @@ class TendersController < ApplicationController
           tender.update(params)
         end
         flash[:notice] = "Импортировано #{xls.last_row-5+1} записей"
-      else 
+      else
         flash[:error] = 'Импортировать можно только .xls файлы'
       end
     else
@@ -56,5 +66,10 @@ class TendersController < ApplicationController
     end
 
     redirect_to tenders_path
+  end
+
+  private
+  def set_tender
+    @tender = Tender.find(params[:id])
   end
 end
