@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
 
   validates :name, presence: true
+  has_many :comments, dependent: :destroy
 
   def role?(base_role)
     ROLES.index(base_role.to_s) <= ROLES.index(role)
@@ -14,5 +15,5 @@ class User < ActiveRecord::Base
   private
   def password_required?
     new_record? ? super : false
-  end 
+  end
 end
