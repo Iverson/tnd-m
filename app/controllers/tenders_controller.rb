@@ -30,34 +30,28 @@ class TendersController < ApplicationController
 
   def import
     file = params[:file]
-    if file
 
+    if file
       if File.extname(file.path) == ".xls"
         xls = Roo::Spreadsheet.open(file.path)
+        i = 1
 
-        (5..xls.last_row).each do |i|
-          row = xls.row(i)
-          row.compact!
-          row.shift
-
-          params = {
-            seldon_id: row[0],
-            name: row[1],
-            customer: row[2],
-            milestones: row[3],
-            url: row[4],
-            start_date: row[5],
-            end_date: row[6],
-            start_max_price: row[7],
-            docs_deadline: row[8],
-            approve_deadline: row[9],
-            completion_date: row[10]
-          }
-
-          tender = Tender.find_or_initialize_by(seldon_id: params[:seldon_id])
-          tender.update(params)
+        while !xls.row(i)[0].is_a?(Numeric) && i < xls.last_row
+          i += 1
         end
-        flash[:notice] = "Импортировано #{xls.last_row-5+1} записей"
+        first_row = i+1
+
+        if first_row <= xls.last_row
+          (first_row..xls.last_row).each do |i|
+            params = Tender.xls_to_params(xls.row(i))
+
+            tender = Tender.find_or_initialize_by(seldon_id: params[:seldon_id])
+            tender.update(params)
+          end
+          flash[:notice] = "Импортировано #{xls.last_row-first_row+1} записей"
+        else
+          flash[:error] = 'В файле нет записей'
+        end
       else
         flash[:error] = 'Импортировать можно только .xls файлы'
       end

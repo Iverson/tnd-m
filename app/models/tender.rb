@@ -25,4 +25,22 @@ class Tender < ActiveRecord::Base
       end
     end
   end
+
+  def self.xls_to_params(row = [])
+    row.shift
+
+    params = {
+      seldon_id: row[0],
+      name: row[1],
+      customer: row[2],
+      milestones: row[3] || "",
+      url: row[4],
+      start_date: row[5],
+      end_date: row[6],
+      start_max_price: row[7],
+      docs_deadline: row[8],
+      approve_deadline: row[9],
+      completion_date: row[10]
+    }
+  end
 end
