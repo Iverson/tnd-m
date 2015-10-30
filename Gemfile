@@ -34,13 +34,12 @@ gem 'roo-xls'
 # Use Unicorn as the app server
 gem 'unicorn'
 
-# Use Capistrano for deployment
-gem 'capistrano', '~> 3.4.0'
-gem 'capistrano-rails',   require: false
-gem 'capistrano-bundler', require: false
-gem 'capistrano-unicorn-nginx', '~> 3.4.0'
-
 group :development, :test do
+	gem 'capistrano', '~> 3.4.0'
+	gem 'capistrano-rails',   require: false
+	gem 'capistrano-bundler', require: false
+	gem 'capistrano-unicorn-nginx', '~> 3.4.0'
+
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem 'pry'
