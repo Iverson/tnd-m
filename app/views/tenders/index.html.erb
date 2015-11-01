@@ -40,8 +40,13 @@
     </thead>
     <tbody>
       <% @tenders.each do |tender| %>
-      <tr>
-        <td><%= tender.seldon_id %></td>
+      <tr class="<%= 'active' if tender.important %>">
+        <td>
+          <% if tender.necessary %>
+          <span class="label label-success necessary">Участвуем обязательно</span>
+          <% end %>
+          <%= tender.seldon_id %>
+        </td>
         <td><%= link_to tender.name, tender %></td>
         <td><%= tender.customer %></td>
         <!-- <td><%= tender.milestones %></td> -->

@@ -94,3 +94,14 @@
 .b-form {
   width: 400px;
 }
+
+.nobold {
+  font-weight: normal;
+}
+
+.table .necessary {
+  position: absolute;
+  transform: translate(-100%, -9px) rotate(-90deg);
+  transform-origin: 100% 0;
+  margin-left: -24px;
+}

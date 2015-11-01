@@ -1,4 +1,9 @@
-<h3 class="page-header noborder"><%= @tender.name %></h3>
+<h3 class="page-header noborder">
+  <%= @tender.name %>
+  <% if @tender.necessary %>
+    <span class="label label-success necessary">Участвуем обязательно</span>
+  <% end %>
+</h3>
 
 <table class="table">
   <tr>
@@ -75,25 +80,44 @@
       <%= render partial: "shared/votes", locals: {votes: @colleagues_votes} %>
     </td>
   </tr>
+  <% unless can? :manage, Tender %>
   <tr>
     <td><b>Ответственный сотрудник</b></td>
     <td>
-    <% if can? :manage, Tender %>
-      <%= form_for @tender, :html => {class: "form-inline"} do |f| %>
-      <div>
-        <div class="form-group">
-          <%= f.select :performer_id, @users.collect {|u| [ u.full_name, u.id ] }, {include_blank: '- Выбрать -'}, class: "form-control", autocomplete: "off" %>
-        </div>&nbsp;&nbsp;&nbsp;&nbsp;
-        <div class="form-group">
-          <%= f.submit "Назначить", class: "btn btn-sm btn-primary" %>
-        </div>
-      </div>
-      <% end %>
-    <% else %>
       <%= @tender.performer ? @tender.performer.full_name : "не назначен" %>
-    <% end %>
     </td>
   </tr>
+  <% end %>
+  <% if can? :manage, Tender %>
+    <tr>
+      <td><b>Администратор</b></td>
+      <td>
+        <%= form_for @tender, :html => {class: "", style: "width: 200px"} do |f| %>
+        <div>
+          <div class="form-group">
+            <%= f.label :perform_id, "Ответственный сотрудник", {class: "nobold"} %>
+            <%= f.select :performer_id, @users.collect {|u| [ u.full_name, u.id ] }, {include_blank: '- Выбрать -'}, class: "form-control", autocomplete: "off" %>
+          </div>
+          <div class="checkbox">
+            <%= f.label :important do %>
+              <%= f.check_box :important, class: "" %>
+              Отметить как срочный
+            <% end %>
+          </div>
+          <div class="checkbox">
+            <%= f.label :necessary, class: "text-danger" do %>
+              <%= f.check_box :necessary, class: "" %>
+              Участвуем обязательно!
+            <% end %>
+          </div>
+          <div class="form-group">
+            <%= f.submit "Сохранить", class: "btn btn-sm btn-primary" %>
+          </div>
+        </div>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
 </table>
 
 <%= render partial: "shared/comments", locals: {commentable: @tender} %>

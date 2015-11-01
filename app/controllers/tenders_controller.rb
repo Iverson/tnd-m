@@ -3,7 +3,7 @@ class TendersController < ApplicationController
   before_action :set_tender, only: [:show, :edit, :update, :destroy]
 
   def index
-    @tenders = Tender.all.order(created_at: :asc)
+    @tenders = Tender.all.order(important: :desc, necessary: :desc, created_at: :asc)
   end
 
   def show
@@ -14,8 +14,8 @@ class TendersController < ApplicationController
 
   def update
     @tender.update(tender_params)
-    
-    UserMailer.performer_notify_email(@tender.performer, @tender).deliver_later if tender_params[:performer_id]
+
+    UserMailer.performer_notify_email(@tender.performer, @tender).deliver_later unless tender_params[:performer_id].blank?
 
     respond_to do |format|
       format.html { redirect_to tender_url(@tender), notice: 'Данные сохранены.' }
@@ -83,6 +83,6 @@ class TendersController < ApplicationController
   end
 
   def tender_params
-    params.require(:tender).permit(:performer_id)
+    params.require(:tender).permit(:performer_id, :important, :necessary)
   end
 end
