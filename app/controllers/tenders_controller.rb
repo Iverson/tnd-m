@@ -3,12 +3,24 @@ class TendersController < ApplicationController
   before_action :set_tender, only: [:show, :edit, :update, :destroy]
 
   def index
-    @tenders = Tender.all
+    @tenders = Tender.all.order(created_at: :asc)
   end
 
   def show
     @vote = @tender.votes.find_or_initialize_by(user_id: current_user.id)
     @colleagues_votes = @tender.votes.order(value: :desc)
+    @users = User.all
+  end
+
+  def update
+    @tender.update(tender_params)
+    
+    UserMailer.performer_notify_email(@tender.performer, @tender).deliver_later if tender_params[:performer_id]
+
+    respond_to do |format|
+      format.html { redirect_to tender_url(@tender), notice: 'Данные сохранены.' }
+      format.json { head :no_content }
+    end
   end
 
   # DELETE /tenders/1
@@ -65,7 +77,12 @@ class TendersController < ApplicationController
   end
 
   private
+
   def set_tender
     @tender = Tender.find(params[:id])
+  end
+
+  def tender_params
+    params.require(:tender).permit(:performer_id)
   end
 end

@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
 
   validates :name, presence: true
   has_many :comments, dependent: :destroy
+  has_many :tenders, :foreign_key => 'performer_id'
 
   def role?(base_role)
     ROLES.index(base_role.to_s) <= ROLES.index(role)

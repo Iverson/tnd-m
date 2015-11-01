@@ -25,7 +25,7 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    @user = User.new(message_params)
+    @user = User.new(user_params)
 
     respond_to do |format|
       if @user.save
@@ -42,7 +42,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1.json
   def update
     respond_to do |format|
-      if @user.update(message_params)
+      if @user.update(user_params)
         format.html { redirect_to edit_user_url(@user), notice: 'Пользователь успешно обновлен.' }
         format.json { render :show, status: :ok, location: @user }
       else
@@ -67,7 +67,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  def message_params
+  def user_params
     params[:password_confirmation] = params[:password] if params[:password]
     params.require(:user).permit(:name, :position, :email, :password, :password_confirmation, :role)
   end

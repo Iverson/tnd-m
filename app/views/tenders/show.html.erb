@@ -75,6 +75,25 @@
       <%= render partial: "shared/votes", locals: {votes: @colleagues_votes} %>
     </td>
   </tr>
+  <tr>
+    <td><b>Ответственный сотрудник</b></td>
+    <td>
+    <% if can? :manage, Tender %>
+      <%= form_for @tender, :html => {class: "form-inline"} do |f| %>
+      <div>
+        <div class="form-group">
+          <%= f.select :performer_id, @users.collect {|u| [ u.full_name, u.id ] }, {include_blank: '- Выбрать -'}, class: "form-control", autocomplete: "off" %>
+        </div>&nbsp;&nbsp;&nbsp;&nbsp;
+        <div class="form-group">
+          <%= f.submit "Назначить", class: "btn btn-sm btn-primary" %>
+        </div>
+      </div>
+      <% end %>
+    <% else %>
+      <%= @tender.performer ? @tender.performer.full_name : "не назначен" %>
+    <% end %>
+    </td>
+  </tr>
 </table>
 
 <%= render partial: "shared/comments", locals: {commentable: @tender} %>

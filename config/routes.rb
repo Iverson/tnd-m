@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root :to => redirect('/tenders')
 
-  resources :tenders, only: [:index, :show, :destroy] do
+  resources :tenders, only: [:index, :show, :update, :destroy] do
     collection { post :import }
     collection { get :export }
 
