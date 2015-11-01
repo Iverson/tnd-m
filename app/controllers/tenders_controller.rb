@@ -7,6 +7,8 @@ class TendersController < ApplicationController
   end
 
   def show
+    @vote = @tender.votes.find_or_initialize_by(user_id: current_user.id)
+    @colleagues_votes = @tender.votes.order(value: :desc)
   end
 
   # DELETE /tenders/1

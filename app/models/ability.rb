@@ -11,11 +11,13 @@ class Ability
     #     can :read, :all
     #   end
     if user.role? :user
-      can :manage, Tender
+      can :read, Tender
       can :manage, Comment
+      can :update, User, id: user.id
     end
 
     if user.role? :admin
+      can :manage, Tender
       can :manage, User
     end
     #

@@ -12,6 +12,10 @@ class User < ActiveRecord::Base
     ROLES.index(base_role.to_s) <= ROLES.index(role)
   end
 
+  def full_name
+    position? ? position : name
+  end
+
   private
   def password_required?
     new_record? ? super : false

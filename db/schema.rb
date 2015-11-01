@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151027131057) do
+ActiveRecord::Schema.define(version: 20151101155408) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,17 @@ ActiveRecord::Schema.define(version: 20151027131057) do
 
   add_index "comments", ["commentable_id"], name: "index_comments_on_commentable_id", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
+
+  create_table "tender_votes", force: :cascade do |t|
+    t.boolean  "value",      null: false
+    t.integer  "user_id"
+    t.integer  "tender_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "tender_votes", ["tender_id"], name: "index_tender_votes_on_tender_id", using: :btree
+  add_index "tender_votes", ["user_id"], name: "index_tender_votes_on_user_id", using: :btree
 
   create_table "tenders", force: :cascade do |t|
     t.string   "name"
@@ -59,10 +70,13 @@ ActiveRecord::Schema.define(version: 20151027131057) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                              null: false
     t.datetime "updated_at",                              null: false
+    t.string   "position"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "comments", "users"
+  add_foreign_key "tender_votes", "tenders"
+  add_foreign_key "tender_votes", "users"
 end

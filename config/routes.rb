@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     collection { get :export }
 
     resources :comments, module: :tenders
+    resources :votes, only: [:create, :update]
   end
 
   resources :users, path: '/user'

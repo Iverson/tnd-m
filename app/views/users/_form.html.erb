@@ -1,4 +1,4 @@
-<%= form_for(@user, :html => {class: "b-form"}) do |f| %>
+<%= form_for(@user, :html => {class: "b-form", autocomplete: "off"}) do |f| %>
   <% if @user.errors.any? %>
     <div class="alert alert-danger">
       <% @user.errors.full_messages.each do |message| %>
@@ -13,19 +13,28 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :email %>
-    <%= f.email_field :email, class: "form-control" %>
+    <%= f.label :position %>
+    <%= f.text_field :position, class: "form-control" %>
   </div>
 
   <div class="form-group">
-    <%= f.label :password %>
-    <%= f.password_field :password, class: "form-control", autocomplete: "off" %>
+    <%= f.label :email %>
+    <%= f.email_field :email, class: "form-control", autocomplete: "off" %>
   </div>
 
+  <input type="password" name="password_disable_autofill" value="" style="display:none;" />
+
+  <div class="form-group">
+    <%= f.label :password, 'Password' %>
+    <%= f.password_field :password, class: "form-control", autocomplete: false, value: "" %>
+  </div>
+  
+<% if can? :manage, User %>
   <div class="form-group">
     <%= f.label :role %>
     <%= f.collection_select :role, User::ROLES, :to_s, :humanize, {}, {class: "form-control"} %>
   </div>
+<% end %>
 
   <div class="actions">
     <%= f.submit "Сохранить", class: "btn btn-lg btn-primary" %>

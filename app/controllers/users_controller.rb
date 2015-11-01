@@ -69,6 +69,6 @@ class UsersController < ApplicationController
 
   def message_params
     params[:password_confirmation] = params[:password] if params[:password]
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, :role)
+    params.require(:user).permit(:name, :position, :email, :password, :password_confirmation, :role)
   end
 end

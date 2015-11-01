@@ -20,7 +20,10 @@
         </div>
         <div class="commentText">
           <div class="commentAuthor">
-            <b><%= comment.user.name %></b>
+            <b><%= comment.user.name %> </b> 
+            <% if comment.user.position? %>
+            <i class="">(<%= comment.user.position %>)</i>
+            <% end %>
             <span class="date sub-text"><%= comment_time(comment.created_at) %></span>
           </div>
           

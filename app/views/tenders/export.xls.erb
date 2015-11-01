@@ -24,6 +24,7 @@
       <Column ss:Index="11" ss:AutoFitWidth="0" ss:Width="100"  />
       <Column ss:Index="12" ss:AutoFitWidth="0" ss:Width="100"  />
       <Column ss:Index="13" ss:AutoFitWidth="0" ss:Width="300"  />
+      <Column ss:Index="14" ss:AutoFitWidth="0" ss:Width="200"  />
       <Row ss:StyleID="1">
         <Cell><Data ss:Type="String">№ п/п</Data></Cell>
         <Cell><Data ss:Type="String">Индивидуальный номер в системе Seldon</Data></Cell>
@@ -38,6 +39,7 @@
         <Cell><Data ss:Type="String">Срок утверждения Карточки проекта PRE-SALE</Data></Cell>
         <Cell><Data ss:Type="String">Срок окончания работ</Data></Cell>
         <Cell><Data ss:Type="String">Комментарии</Data></Cell>
+        <Cell><Data ss:Type="String">Берем?</Data></Cell>
       </Row>
     <% @tenders.each_with_index do |tender, index| %>
       <Row>
@@ -54,6 +56,7 @@
         <Cell><Data ss:Type="String"><%= tender.approve_deadline %></Data></Cell>
         <Cell><Data ss:Type="String"><%= tender.completion_date %></Data></Cell>
         <Cell><Data ss:Type="String"><%= tender.comments.to_text %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= tender.votes.to_text %></Data></Cell>
       </Row>
     <% end %>
     </Table>

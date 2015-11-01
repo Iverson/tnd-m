@@ -1,0 +1,9 @@
+<table class="" style="width: 200px;">
+  <% votes.each do |vote| %>
+  <tr>
+    <td><%= vote.user.full_name %></td>
+    <td class="text-center" width="50">&mdash;</td>
+    <td><%= vote.to_text %></td>
+  </tr>
+  <% end %>
+</table>
