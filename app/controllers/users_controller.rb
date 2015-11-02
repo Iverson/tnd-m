@@ -41,8 +41,12 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
+    need_relogin = (@user.id == current_user.id)
     respond_to do |format|
       if @user.update(user_params)
+        current_user = @user if need_relogin
+        sign_in(current_user, :bypass=>true)
+
         format.html { redirect_to edit_user_url(@user), notice: 'Пользователь успешно обновлен.' }
         format.json { render :show, status: :ok, location: @user }
       else
