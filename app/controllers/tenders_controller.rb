@@ -13,9 +13,10 @@ class TendersController < ApplicationController
   end
 
   def update
+    current_performer_id = @tender.performer_id
     @tender.update(tender_params)
 
-    UserMailer.performer_notify_email(@tender.performer, @tender).deliver_later unless tender_params[:performer_id].blank?
+    UserMailer.performer_notify_email(@tender.performer, @tender).deliver_later if !tender_params[:performer_id].blank? && tender_params[:performer_id].to_i != current_performer_id
 
     respond_to do |format|
       format.html { redirect_to tender_url(@tender), notice: 'Данные сохранены.' }
