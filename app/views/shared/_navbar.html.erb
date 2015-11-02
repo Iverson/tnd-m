@@ -10,6 +10,13 @@
       <!-- <a class="navbar-brand" href="#">Admin</a> -->
     </div>
     <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-left">
+        <li class="<%= "active" if current_page?(tenders_path) %>"><%= link_to "Тендеры", tenders_path %></a></li>
+        <% if can? :manage, User %>
+        <li class="<%= "active" if current_page?(users_path) %>"><%= link_to "Пользователи", users_path %></a></li>
+        <% end %>
+      </ul>
+
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to current_user.email, edit_user_path(current_user) %></li>
         <li><%= link_to "Выйти", destroy_user_session_path, :method => :delete %></li>

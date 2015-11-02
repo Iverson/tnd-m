@@ -1,8 +1,5 @@
 <h3 class="page-header noborder">
-  <%= @tender.name %>
-  <% if @tender.necessary %>
-    <span class="label label-success necessary">Участвуем обязательно</span>
-  <% end %>
+  <%= @tender.name %>&nbsp;<% if @tender.necessary %><span class="label label-success necessary">Участвуем обязательно</span><% end %>
 </h3>
 
 <table class="table">

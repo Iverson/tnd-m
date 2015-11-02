@@ -21,7 +21,7 @@
   <table class="table table-hover table-fixed">
     <thead>
       <tr>
-        <th width="100">Seldon Id</th>
+        <th width="80">Seldon Id</th>
         <th>Название</th>
         <th>Заказчик</th>
         <!-- <th width="200">milestones</th> -->
@@ -29,7 +29,7 @@
         <th width="100">Дата начала</th>
         <th width="100">Дата окончания</th>
         <th width="130">Начальная макс. цена, руб.</th>
-        <th>Берем?</th>
+        <th width="200">Берем?</th>
         <% if can? :manage, Tender %>
         <th width="80"></th>
         <% end %>
@@ -43,7 +43,7 @@
       <tr class="<%= 'active' if tender.important %>">
         <td>
           <% if tender.necessary %>
-          <span class="label label-success necessary">Участвуем обязательно</span>
+          <span class="label label-success necessary">обязательно!</span>
           <% end %>
           <%= tender.seldon_id %>
         </td>
