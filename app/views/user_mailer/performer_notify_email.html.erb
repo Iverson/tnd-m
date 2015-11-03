@@ -1,4 +1,65 @@
 <div>
-  <p>Вы назначены ответственным за проработку тендера <%= link_to @tender.name.html_safe, @tender %>.</p>
+  <p>Вы назначены ответственным за проработку тендера <b>"<%= @tender.name.html_safe %>"</b></p>
+  
+  <table class="table">
+  <tr>
+    <td width="240"><b>Seldon Id</b></td>
+    <td><%= @tender.seldon_id %></td>
+  </tr>
+  <tr>
+    <td><b>Заказчик</b></td>
+    <td><%= @tender.customer %></td>
+  </tr>
+  <tr>
+    <td><b>Начальная макс. цена</b></td>
+    <td class="text-success"><%= @tender.start_max_price %> руб.</td>
+  </tr>
+  <tr>
+    <td><b>Этапы работ</b></td>
+    <td>
+      <% @tender.milestones.lines.each do |line| %>
+        <p><%= line %></p>
+      <% end %>
+    </td>
+  </tr>
+  <tr>
+    <td><b>Ссылка на процедуру закупки</b></td>
+    <td><%= link_to external_url(@tender.url), @tender.url, target: "_blank" %></td>
+  </tr>
+  </tr>
+  <tr>
+    <td><b>Дата начала приема заявок</b></td>
+    <td><%= @tender.start_date %></td>
+  </tr>
+  <tr>
+    <td><b>Дата окончания приема заявок</b></td>
+    <td><%= @tender.end_date %></td>
+  </tr>
+  <tr>
+    <td><b>Срок предоставления документов в  КО для участия в процедуре закупки </b></td>
+    <td><%= @tender.docs_deadline %></td>
+  </tr>
+  <tr>
+    <td><b>Срок утверждения Карточки проекта PRE-SALE</b></td>
+    <td><%= @tender.approve_deadline %></td>
+  </tr>
+  <tr>
+    <td><b>Срок окончания работ</b></td>
+    <td><%= @tender.completion_date || "—" %></td>
+  </tr>
+  <tr>
+    <td><b>Берем?</b></td>
+    <td>
+      <%= render partial: "shared/votes", locals: {votes: @tender.votes.order(value: :desc)} %>
+    </td>
+  </tr>
+  <tr>
+    <td><b>Комментарии</b></td>
+    <td>
+      <pre><%= @tender.comments.to_text %></pre>
+    </td>
+  </tr>
+</table>
+
   <p>Не отвечайте на это письмо.</p>
 </div>
