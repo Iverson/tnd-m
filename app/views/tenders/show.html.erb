@@ -51,24 +51,7 @@
   <tr>
     <td><b>Берем?</b></td>
     <td>
-      <%= form_for @vote, url: @vote.new_record? ? tender_votes_path(@tender) : tender_vote_path(@tender, @vote), :html => {class: "form-inline"} do |f| %>
-      <div>
-        <div class="form-group">
-          <%= f.label :value_true, "Да", class: 'radio-inline' do %>
-            <%= f.radio_button :value, true, class: "" %>
-            Да
-          <% end %>
-
-          <%= f.label :value_false, "Нет", class: 'radio-inline' do %>
-            <%= f.radio_button :value, false, class: "" %>
-            Нет
-          <% end %>
-        </div>&nbsp;&nbsp;&nbsp;&nbsp;
-        <div class="form-group">
-          <%= f.submit "Проголосовать", class: "btn btn-xs btn-primary" %>
-        </div>
-      </div>
-      <% end %>
+      <%= render partial: "vote_form", locals: {tender: @tender, vote: @vote} %>
     </td>
   </tr>
   <tr>
@@ -79,7 +62,7 @@
   </tr>
   <% unless can? :manage, Tender %>
   <tr>
-    <td><b>Ответственный сотрудник</b></td>
+    <td><b>Руководитель Pre-sale</b></td>
     <td>
       <%= @tender.performer ? @tender.performer.full_name : "не назначен" %>
     </td>
@@ -92,21 +75,25 @@
         <%= form_for @tender, :html => {class: "", style: "width: 200px"} do |f| %>
         <div>
           <div class="form-group">
-            <%= f.label :perform_id, "Ответственный сотрудник", {class: "nobold"} %>
-            <%= f.select :performer_id, @users.collect {|u| [ u.full_name, u.id ] }, {include_blank: '- Выбрать -'}, class: "form-control", autocomplete: "off" %>
+            <%= f.label :perform_id, "Руководитель Pre-sale", {class: "nobold"} %>
+            <%= f.select :performer_id, @performers.collect {|u| [ u.full_name, u.id ] }, {include_blank: '- Выбрать -'}, class: "form-control", autocomplete: "off" %>
           </div>
-          <div class="checkbox">
-            <%= f.label :important do %>
-              <%= f.check_box :important, class: "" %>
-              Отметить как срочный
-            <% end %>
-          </div>
-          <div class="checkbox">
-            <%= f.label :necessary, class: "text-danger" do %>
-              <%= f.check_box :necessary, class: "" %>
-              Участвуем обязательно!
-            <% end %>
-          </div>
+
+          <% if current_user.role? :admin %>
+            <div class="checkbox">
+              <%= f.label :important do %>
+                <%= f.check_box :important, class: "" %>
+                Отметить как срочный
+              <% end %>
+            </div>
+            <div class="checkbox">
+              <%= f.label :necessary, class: "text-danger" do %>
+                <%= f.check_box :necessary, class: "" %>
+                Участвуем обязательно!
+              <% end %>
+            </div>
+          <% end %>
+          
           <div class="form-group">
             <%= f.submit "Сохранить", class: "btn btn-sm btn-primary" %>
           </div>

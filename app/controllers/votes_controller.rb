@@ -13,7 +13,7 @@ class VotesController < ApplicationController
     @vote.update(vote_params)
 
     respond_to do |format|
-      format.html { redirect_to tender_url(@tender), notice: 'Вы успешно проголосовали.' }
+      format.html { redirect_to :back, notice: 'Вы успешно проголосовали.' }
       format.json { head :no_content }
     end
   end

@@ -16,6 +16,11 @@ class Ability
       can :update, User, id: user.id
     end
 
+    if user.role? :manager
+      can :manage, Tender
+      can :manage, Performer
+    end
+
     if user.role? :admin
       can :manage, Tender
       can :manage, User

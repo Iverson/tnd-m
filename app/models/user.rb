@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  ROLES = %w[user admin]
+  ROLES = %w[user manager admin]
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -7,7 +7,6 @@ class User < ActiveRecord::Base
 
   validates :name, presence: true
   has_many :comments, dependent: :destroy
-  has_many :tenders, :foreign_key => 'performer_id'
 
   def role?(base_role)
     ROLES.index(base_role.to_s) <= ROLES.index(role)

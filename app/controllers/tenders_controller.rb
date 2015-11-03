@@ -9,7 +9,7 @@ class TendersController < ApplicationController
   def show
     @vote = @tender.votes.find_or_initialize_by(user_id: current_user.id)
     @colleagues_votes = @tender.votes.order(value: :desc)
-    @users = User.all
+    @performers = Performer.all
   end
 
   def update
@@ -19,7 +19,7 @@ class TendersController < ApplicationController
     UserMailer.performer_notify_email(@tender.performer, @tender).deliver_later if !tender_params[:performer_id].blank? && tender_params[:performer_id].to_i != current_performer_id
 
     respond_to do |format|
-      format.html { redirect_to tender_url(@tender), notice: 'Данные сохранены.' }
+      format.html { redirect_to :back, notice: 'Данные сохранены.' }
       format.json { head :no_content }
     end
   end

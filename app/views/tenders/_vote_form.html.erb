@@ -1,0 +1,18 @@
+<%= form_for vote, url: vote.new_record? ? tender_votes_path(tender) : tender_vote_path(tender, vote), :html => {class: "form-inline vote-form"} do |f| %>
+  <div>
+    <div class="form-group">
+      <%= f.label :value_true, "Да", class: 'radio-inline' do %>
+      <%= f.radio_button :value, true, class: "" %>
+      Да
+      <% end %>
+
+      <%= f.label :value_false, "Нет", class: 'radio-inline' do %>
+      <%= f.radio_button :value, false, class: "" %>
+      Нет
+      <% end %>
+    </div>&nbsp;&nbsp;&nbsp;&nbsp;
+    <div class="form-group">
+      <%= f.submit "Проголосовать", class: "btn btn-xs btn-primary" %>
+    </div>
+  </div>
+<% end %>

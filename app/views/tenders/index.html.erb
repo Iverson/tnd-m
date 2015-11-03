@@ -18,20 +18,20 @@
 <% end %>
 
 <div class="table-responsive">
-  <table class="table table-hover table-fixed">
+  <table class="table table-hover table-fixed tenders-table">
     <thead>
       <tr>
         <th width="80">Seldon Id</th>
         <th>Название</th>
-        <th>Заказчик</th>
+        <!-- <th>Заказчик</th> -->
         <!-- <th width="200">milestones</th> -->
-        <!-- <th width="100">Ссылка</th> -->
+        <th width="120">Ссылка на оф. сайт</th>
         <th width="100">Дата начала</th>
         <th width="100">Дата окончания</th>
         <th width="130">Начальная макс. цена, руб.</th>
-        <th width="220">Берем?</th>
-        <% if can? :manage, Tender %>
-        <th width="80"></th>
+        <th width="240">Берем?</th>
+        <% if current_user.role? :admin %>
+        <th width="170">Админ</th>
         <% end %>
         <!-- <th>docs_deadline</th> -->
         <!-- <th>approve_deadline</th> -->
@@ -39,7 +39,7 @@
       </tr>
     </thead>
     <tbody>
-      <% @tenders.each do |tender| %>
+      <% @tenders.each_with_index do |tender, i| %>
       <tr class="<%= 'warning' if tender.important %>">
         <td>
           <% if tender.necessary %>
@@ -48,18 +48,39 @@
           <%= tender.seldon_id %>
         </td>
         <td><%= link_to tender.name, tender %></td>
-        <td><%= tender.customer %></td>
+        <!-- <td><%= tender.customer %></td> -->
         <!-- <td><%= tender.milestones %></td> -->
-        <!-- <td><%= link_to "zkupki.gov.ru", tender.url, target: "_blank" %></td> -->
+        <td><%= link_to external_url(tender.url), tender.url, target: "_blank" %></td>
         <td><%= tender.start_date %></td>
         <td><%= tender.end_date %></td>
         <td><%= tender.start_max_price %></td>
-        <td>
+        <td class="tenders-table__votes">
           <%= render partial: "shared/votes", locals: {votes: tender.votes.order(value: :desc)} %>
+          <%= render partial: "vote_form", locals: {tender: tender, vote: tender.votes.find_or_initialize_by(user_id: current_user.id)} %>
         </td>
-        <% if can? :manage, Tender %>
-        <td class="text-right">
-          <%= link_to "Удалить", tender_path(tender), class: "btn btn-danger btn-xs", :method => :delete %>
+        <% if current_user.role? :admin %>
+        <td>
+          <%= form_for tender, :html => {class: ""} do |f| %>
+            <div>
+              <div class="checkbox" style="margin-top: 0;">
+                <%= f.label "important_#{i}" do %>
+                <%= f.check_box :important, class: "", id: "tender_important_#{i}" %>
+                срочный
+                <% end %>
+              </div>
+              <div class="checkbox">
+                <%= f.label "necessary_#{i}", class: "text-danger" do %>
+                <%= f.check_box :necessary, class: "", id: "tender_necessary_#{i}" %>
+                обязательный!
+                <% end %>
+              </div>
+
+              <div class="form-group">
+                <%= f.submit "Сохранить", class: "btn btn-xs btn-link" %>
+                <%= link_to "Удалить", tender_path(tender), class: "btn btn-link btn-xs", :method => :delete %>
+              </div>
+            </div>
+          <% end %>
         </td>
         <% end %>
         <!-- <td><%= tender.docs_deadline %></td> -->

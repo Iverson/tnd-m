@@ -17,7 +17,7 @@
       <tr>
         <td><%= user.id %></td>
         <td><%= user.name %></td>
-        <td><%= link_to user.email, user %></td>
+        <td><%= user.email %></td>
         <td><%= user.role %></td>
         <td class="text-right">
           <%= link_to "Редактировать", edit_user_path(user), class: "btn btn-primary btn-xs" %>

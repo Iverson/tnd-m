@@ -7,7 +7,7 @@ class Tender < ActiveRecord::Base
 
   has_many :comments, as: :commentable
   has_many :votes, class_name: 'TenderVote', :dependent => :destroy
-  belongs_to :performer, :class_name => "User"
+  belongs_to :performer
 
   def self.to_csv(options = {})
     CSV.generate(options) do |csv|

@@ -108,3 +108,26 @@
   font-size: 10px;
   padding-bottom: 4px;
 }
+
+.tenders-table {}
+
+  .tenders-table td .btn {
+    opacity: 0;
+    transition: opacity 0.2s ease-out;
+  }
+
+  .tenders-table tr:hover td .btn {
+    opacity: 1;
+  }
+
+  .tenders-table__votes {
+
+  }
+
+    .tenders-table__votes .vote-form {
+      margin-top: 10px;
+    }
+
+    .tenders-table__votes .vote-form:first-child {
+      margin-top: 0;
+    }

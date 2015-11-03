@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   end
 
   resources :users, path: '/user'
+  resources :performers
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

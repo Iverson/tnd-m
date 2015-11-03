@@ -1,0 +1,28 @@
+<%= form_for(@performer, :html => {class: "b-form", autocomplete: "off"}) do |f| %>
+  <% if @performer.errors.any? %>
+    <div class="alert alert-danger">
+      <% @performer.errors.full_messages.each do |message| %>
+        <p><%= message %></p>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :position %>
+    <%= f.text_field :position, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :email %>
+    <%= f.email_field :email, class: "form-control", autocomplete: "off" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Сохранить", class: "btn btn-lg btn-primary" %>
+  </div>
+<% end %>
