@@ -14,7 +14,7 @@ class CreateMilestones < ActiveRecord::Migration
     reversible do |change|
       change.up do
         Tender.where.not(performer_id: nil).each do |tender|
-          tender.milestones.create(name: "PRE-SALE", performer_id: tender.performer_id)
+          tender.milestones.create(name: "PRE-SALE", performer_id: tender.performer_id) if Performer.exists?(tender.performer_id)
         end
       end
 
