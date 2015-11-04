@@ -5,9 +5,9 @@ class Tender < ActiveRecord::Base
 
   ATTRIBUTES = ["id", "seldon_id", "name", "customer", "milestones", "url", "start_date", "end_date", "start_max_price", "docs_deadline", "approve_deadline", "completion_date"]
 
-  has_many :comments, as: :commentable
+  has_many :comments, as: :commentable, :dependent => :destroy
   has_many :votes, class_name: 'TenderVote', :dependent => :destroy
-  belongs_to :performer
+  has_many :milestones, :dependent => :destroy
 
   def self.to_csv(options = {})
     CSV.generate(options) do |csv|

@@ -1,0 +1,38 @@
+<%= form_for([@tender, @milestone], :html => {class: "b-form", autocomplete: "off"}) do |f| %>
+  <% if @milestone.errors.any? %>
+    <div class="alert alert-danger">
+      <% @milestone.errors.full_messages.each do |message| %>
+        <p><%= message %></p>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: "form-control", required: true %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :performer_id %>
+    <%= f.select :performer_id, @performers.collect {|u| [ u.full_name, u.id ] }, {include_blank: '- Выбрать -'}, class: "form-control", autocomplete: "off" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :estimate_date %>
+    <%= f.date_field :estimate_date, class: "form-control", placeholder: "дд/мм/гггг" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :tender_date %>
+    <%= f.date_field :tender_date, class: "form-control", placeholder: "дд/мм/гггг" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :complete_date %>
+    <%= f.date_field :complete_date, class: "form-control", placeholder: "дд/мм/гггг" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Сохранить", class: "btn btn-lg btn-primary" %>
+  </div>
+<% end %>

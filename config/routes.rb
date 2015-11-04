@@ -12,6 +12,9 @@ Rails.application.routes.draw do
 
     resources :comments, module: :tenders
     resources :votes, only: [:create, :update]
+    resources :milestones, only: [:create, :update, :show, :new, :edit, :destroy] do
+      resources :comments, module: :milestones
+    end
   end
 
   resources :users, path: '/user'

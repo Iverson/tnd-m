@@ -131,3 +131,15 @@
     .tenders-table__votes .vote-form:first-child {
       margin-top: 0;
     }
+
+.b-tender {}
+
+  .b-tender__nav {
+    margin-bottom: 10px;
+  }
+
+  .b-tender__data {}
+
+    .b-tender__data tr:first-child td {
+      border-top: none;
+    }

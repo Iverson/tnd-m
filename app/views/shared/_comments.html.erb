@@ -33,7 +33,10 @@
       </li>
     <% end %>
     </ul>
-    <%= form_for [commentable, Comment.new], :html => {class: "form-inline"} do |f| %>
+    <% comments_form_objects = [commentable, Comment.new] %>
+    <% comments_form_objects.prepend(parent) unless local_assigns[:parent].nil? %>
+
+    <%= form_for comments_form_objects, :html => {class: "form-inline"} do |f| %>
       <div>
         <div class="form-group">
           <%= f.text_field :message, class: "form-control", placeholder: "Ваш комментарий" %>

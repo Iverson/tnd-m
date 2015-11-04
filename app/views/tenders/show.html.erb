@@ -1,8 +1,6 @@
-<h3 class="page-header noborder">
-  <%= @tender.name %>&nbsp;<% if @tender.necessary %><span class="label label-success necessary">Участвуем обязательно</span><% end %>
-</h3>
+<%= render partial: "head", locals: {tender: @tender} %>
 
-<table class="table">
+<table class="table b-tender__data">
   <tr>
     <td width="240"><b>Seldon Id</b></td>
     <td><%= @tender.seldon_id %></td>
@@ -13,13 +11,13 @@
   </tr>
   <tr>
     <td><b>Начальная макс. цена</b></td>
-    <td class="text-success"><%= @tender.start_max_price %> руб.</td>
+    <td class="text-success"><%= price(@tender.start_max_price) %> млн. руб.</td>
   </tr>
   <tr>
     <td><b>Этапы работ</b></td>
     <td>
-      <% @tender.milestones.lines.each do |line| %>
-        <p><%= line %></p>
+      <% @tender.milestones.each do |milestone| %>
+        <p><%= milestone.name %></p>
       <% end %>
     </td>
   </tr>
@@ -74,11 +72,6 @@
       <td>
         <%= form_for @tender, :html => {class: "", style: "width: 200px"} do |f| %>
         <div>
-          <div class="form-group">
-            <%= f.label :perform_id, "Руководитель Pre-sale", {class: "nobold"} %>
-            <%= f.select :performer_id, @performers.collect {|u| [ u.full_name, u.id ] }, {include_blank: '- Выбрать -'}, class: "form-control", autocomplete: "off" %>
-          </div>
-
           <% if current_user.role? :admin %>
             <div class="checkbox">
               <%= f.label :important do %>

@@ -1,0 +1,20 @@
+<h3 class="page-header noborder">
+  <%= @tender.name %>&nbsp;<% if @tender.necessary %><span class="label label-success necessary">Участвуем обязательно</span><% end %>
+</h3>
+
+<% if can? :manage, Milestone %>
+<div class="pull-right">
+  <%= link_to "Новый этап".html_safe, new_tender_milestone_path(@tender), class: "btn btn-default btn-sm" %>
+  <% if @milestone %>
+  <%= link_to "Редактировать этап", edit_tender_milestone_path(@tender, @milestone), class: "btn btn-primary btn-sm" %>
+  <%= link_to "Удалить этап", tender_milestone_path(@tender, @milestone), class: "btn btn-danger btn-sm", :method => :delete %>
+  <% end %>
+</div>
+<% end %>
+
+<ul class="nav nav-pills b-tender__nav">
+  <li class="<%= "active" if current_page?(tender_path(tender)) %>"><%= link_to "Общая информация", tender %></a></li>
+  <% tender.milestones.where.not(id: nil).each do |milestone| %>
+  <li class="<%= "active" if current_page?(tender_milestone_path(tender, milestone)) %>"><%= link_to milestone.name, tender_milestone_path(tender, milestone) %></a></li>
+  <% end %>
+</ul>

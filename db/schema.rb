@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151102112401) do
+ActiveRecord::Schema.define(version: 20151104154641) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,20 @@ ActiveRecord::Schema.define(version: 20151102112401) do
 
   add_index "comments", ["commentable_id"], name: "index_comments_on_commentable_id", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
+
+  create_table "milestones", force: :cascade do |t|
+    t.string   "name",          null: false
+    t.integer  "tender_id"
+    t.integer  "performer_id"
+    t.date     "estimate_date"
+    t.date     "tender_date"
+    t.date     "complete_date"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "milestones", ["performer_id"], name: "index_milestones_on_performer_id", using: :btree
+  add_index "milestones", ["tender_id"], name: "index_milestones_on_tender_id", using: :btree
 
   create_table "performers", force: :cascade do |t|
     t.string   "email",      null: false
@@ -90,6 +104,8 @@ ActiveRecord::Schema.define(version: 20151102112401) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "comments", "users"
+  add_foreign_key "milestones", "performers"
+  add_foreign_key "milestones", "tenders"
   add_foreign_key "tender_votes", "tenders"
   add_foreign_key "tender_votes", "users"
 end

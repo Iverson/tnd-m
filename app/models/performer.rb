@@ -1,5 +1,5 @@
 class Performer < ActiveRecord::Base
-  has_many :tenders
+  has_many :milstones
 
   validates :email, presence: true
 

@@ -1,0 +1,25 @@
+default_attributes: &default_attributes
+  name: Название
+
+crud: &crud
+  create:
+    success: Запись успешно создана
+  update:
+    success: Данные успешно сохранены
+  destroy:
+    success: Запись успешно удалена
+
+ru:
+  hello: Привет, мир
+  milestones:
+    <<: *crud
+    new:
+      title: Новый этап
+  activerecord:
+    attributes:
+      milestone:
+        <<: *default_attributes
+        performer_id: Ответственный
+        estimate_date: Планируемая дата
+        tender_date: Дата согласно конкурсу
+        complete_date: Дата фактического выполнения

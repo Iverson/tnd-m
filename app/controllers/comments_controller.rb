@@ -4,10 +4,14 @@ class CommentsController < ApplicationController
     @comment.user = current_user
     @comment.save
 
-    redirect_to @commentable, notice: "Комментарий добавлен."
+    redirect_to commentable_path, notice: "Комментарий добавлен."
   end
 
   private
+
+  def commentable_path
+    @commentable
+  end
 
   def comment_params
     params.require(:comment).permit(:message)

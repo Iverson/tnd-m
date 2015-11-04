@@ -34,7 +34,7 @@
         <Cell><Data ss:Type="String">Ссылка на процедуру закупки</Data></Cell>
         <Cell><Data ss:Type="String">Дата начала приема заявок</Data></Cell>
         <Cell><Data ss:Type="String">Дата окончания приема заявок</Data></Cell>
-        <Cell><Data ss:Type="String">Начальная максимальная цена, руб.</Data></Cell>
+        <Cell><Data ss:Type="String">Начальная максимальная цена, (млн. руб.)</Data></Cell>
         <Cell><Data ss:Type="String">Срок предоставления документов в  КО для участия в процедуре закупки </Data></Cell>
         <Cell><Data ss:Type="String">Срок утверждения Карточки проекта PRE-SALE</Data></Cell>
         <Cell><Data ss:Type="String">Срок окончания работ</Data></Cell>
@@ -47,11 +47,11 @@
         <Cell><Data ss:Type="Number"><%= tender.seldon_id %></Data></Cell>
         <Cell><Data ss:Type="String"><%= tender.name %></Data></Cell>
         <Cell><Data ss:Type="String"><%= tender.customer %></Data></Cell>
-        <Cell><Data ss:Type="String"><%= tender.milestones %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= tender.milestones.to_text %></Data></Cell>
         <Cell><Data ss:Type="String"><%= tender.url %></Data></Cell>
         <Cell><Data ss:Type="String"><%= tender.start_date %></Data></Cell>
         <Cell><Data ss:Type="String"><%= tender.end_date %></Data></Cell>
-        <Cell><Data ss:Type="Number"><%= tender.start_max_price %></Data></Cell>
+        <Cell><Data ss:Type="Number"><%= price(tender.start_max_price) %></Data></Cell>
         <Cell><Data ss:Type="String"><%= tender.docs_deadline %></Data></Cell>
         <Cell><Data ss:Type="String"><%= tender.approve_deadline %></Data></Cell>
         <Cell><Data ss:Type="String"><%= tender.completion_date %></Data></Cell>

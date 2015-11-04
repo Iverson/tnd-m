@@ -1,5 +1,5 @@
 <div>
-  <p>Вы назначены ответственным за проработку тендера <b>"<%= @tender.name.html_safe %>"</b></p>
+  <p>Вы назначены ответственным за <b>"<%= @milestone.name %>"</b> тендера <b>"<%= @tender.name.html_safe %>"</b></p>
   
   <table class="table">
   <tr>
@@ -12,14 +12,12 @@
   </tr>
   <tr>
     <td><b>Начальная макс. цена</b></td>
-    <td class="text-success"><%= @tender.start_max_price %> руб.</td>
+    <td class="text-success"><%= price(@tender.start_max_price) %> млн. руб.</td>
   </tr>
   <tr>
     <td><b>Этапы работ</b></td>
     <td>
-      <% @tender.milestones.lines.each do |line| %>
-        <p><%= line %></p>
-      <% end %>
+      <pre><%= @tender.milestones.to_text %></pre>
     </td>
   </tr>
   <tr>

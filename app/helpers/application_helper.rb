@@ -6,4 +6,8 @@ module ApplicationHelper
   def external_url(url)
     URI.parse(url).host
   end
+
+  def price(value)
+    (value / 1000000).round(2)
+  end
 end

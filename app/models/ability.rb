@@ -12,6 +12,7 @@ class Ability
     #   end
     if user.role? :user
       can :read, Tender
+      can :read, Milestone
       can :manage, Comment
       can :update, User, id: user.id
     end
@@ -23,6 +24,7 @@ class Ability
 
     if user.role? :admin
       can :manage, Tender
+      can :manage, Milestone
       can :manage, User
     end
     #
