@@ -3,7 +3,7 @@
 <table class="table b-tender__data">
   <tr>
     <td width="240"><b><%= Milestone.human_attribute_name(:performer_id) %></b></td>
-    <td><%= @milestone.performer.full_name %></td>
+    <td><%= @milestone.performer ? @milestone.performer.full_name : "не назначен" %></td>
   </tr>
   <tr>
     <td><b><%= Milestone.human_attribute_name(:estimate_date) %></b></td>

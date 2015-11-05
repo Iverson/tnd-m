@@ -25,12 +25,13 @@
       <Column ss:Index="12" ss:AutoFitWidth="0" ss:Width="100"  />
       <Column ss:Index="13" ss:AutoFitWidth="0" ss:Width="300"  />
       <Column ss:Index="14" ss:AutoFitWidth="0" ss:Width="200"  />
+      <Column ss:Index="15" ss:AutoFitWidth="0" ss:Width="200"  />
       <Row ss:StyleID="1">
         <Cell><Data ss:Type="String">№ п/п</Data></Cell>
         <Cell><Data ss:Type="String">Индивидуальный номер в системе Seldon</Data></Cell>
         <Cell><Data ss:Type="String">Название процедуры закупки</Data></Cell>
         <Cell><Data ss:Type="String">Наименование заказчика</Data></Cell>
-        <Cell><Data ss:Type="String">Этапы работ (из ТЗ, КП, ПД, КД) </Data></Cell>
+        <Cell><Data ss:Type="String">Этапы тендера (из ТЗ, КП, ПД, КД) </Data></Cell>
         <Cell><Data ss:Type="String">Ссылка на процедуру закупки</Data></Cell>
         <Cell><Data ss:Type="String">Дата начала приема заявок</Data></Cell>
         <Cell><Data ss:Type="String">Дата окончания приема заявок</Data></Cell>
@@ -40,6 +41,7 @@
         <Cell><Data ss:Type="String">Срок окончания работ</Data></Cell>
         <Cell><Data ss:Type="String">Комментарии</Data></Cell>
         <Cell><Data ss:Type="String">Берем?</Data></Cell>
+        <Cell><Data ss:Type="String">Этапы работ</Data></Cell>
       </Row>
     <% @tenders.each_with_index do |tender, index| %>
       <Row>
@@ -47,7 +49,7 @@
         <Cell><Data ss:Type="Number"><%= tender.seldon_id %></Data></Cell>
         <Cell><Data ss:Type="String"><%= tender.name %></Data></Cell>
         <Cell><Data ss:Type="String"><%= tender.customer %></Data></Cell>
-        <Cell><Data ss:Type="String"><%= tender.milestones.to_text %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= tender.tender_milestones %></Data></Cell>
         <Cell><Data ss:Type="String"><%= tender.url %></Data></Cell>
         <Cell><Data ss:Type="String"><%= tender.start_date %></Data></Cell>
         <Cell><Data ss:Type="String"><%= tender.end_date %></Data></Cell>
@@ -57,6 +59,7 @@
         <Cell><Data ss:Type="String"><%= tender.completion_date %></Data></Cell>
         <Cell><Data ss:Type="String"><%= tender.comments.to_text %></Data></Cell>
         <Cell><Data ss:Type="String"><%= tender.votes.to_text %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= tender.milestones.to_text %></Data></Cell>
       </Row>
     <% end %>
     </Table>

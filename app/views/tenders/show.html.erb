@@ -14,10 +14,10 @@
     <td class="text-success"><%= price(@tender.start_max_price) %> млн. руб.</td>
   </tr>
   <tr>
-    <td><b>Этапы работ</b></td>
+    <td><b>Этапы тендера</b></td>
     <td>
-      <% @tender.milestones.each do |milestone| %>
-        <p><%= milestone.name %></p>
+      <% if @tender.tender_milestones? %>
+      <pre><%= @tender.tender_milestones %></pre>
       <% end %>
     </td>
   </tr>

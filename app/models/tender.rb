@@ -3,7 +3,7 @@ class Tender < ActiveRecord::Base
    "Дата начала приема заявок", "Дата окончания приема заявок", "Начальная максимальная цена, руб.", "Срок предоставления документов в  КО для участия в процедуре закупки",
    "Срок утверждения Карточки проекта PRE-SALE", "Срок окончания работ", "Комментарии"]
 
-  ATTRIBUTES = ["id", "seldon_id", "name", "customer", "milestones", "url", "start_date", "end_date", "start_max_price", "docs_deadline", "approve_deadline", "completion_date"]
+  ATTRIBUTES = ["id", "seldon_id", "name", "customer", "tender_milestones", "url", "start_date", "end_date", "start_max_price", "docs_deadline", "approve_deadline", "completion_date"]
 
   has_many :comments, as: :commentable, :dependent => :destroy
   has_many :votes, class_name: 'TenderVote', :dependent => :destroy
@@ -35,7 +35,7 @@ class Tender < ActiveRecord::Base
       seldon_id: row[0],
       name: row[1],
       customer: row[2],
-      milestones: row[3] || "",
+      tender_milestones: row[3] || "",
       url: row[4],
       start_date: row[5],
       end_date: row[6],

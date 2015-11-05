@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151104154641) do
+ActiveRecord::Schema.define(version: 20151105134911) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(version: 20151104154641) do
     t.string   "name"
     t.integer  "seldon_id"
     t.string   "customer"
-    t.text     "milestones",                       null: false
+    t.text     "tender_milestones",                 null: false
     t.string   "url"
     t.date     "start_date"
     t.date     "end_date"
@@ -73,11 +73,11 @@ ActiveRecord::Schema.define(version: 20151104154641) do
     t.date     "docs_deadline"
     t.date     "approve_deadline"
     t.date     "completion_date"
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
     t.integer  "performer_id"
-    t.boolean  "important",        default: false, null: false
-    t.boolean  "necessary",        default: false, null: false
+    t.boolean  "important",         default: false, null: false
+    t.boolean  "necessary",         default: false, null: false
   end
 
   add_index "tenders", ["performer_id"], name: "index_tenders_on_performer_id", using: :btree

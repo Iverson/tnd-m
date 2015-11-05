@@ -4,6 +4,6 @@ class Performer < ActiveRecord::Base
   validates :email, presence: true
 
   def full_name
-    position? ? position : name
+    name
   end
 end
