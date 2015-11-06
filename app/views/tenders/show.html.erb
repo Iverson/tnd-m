@@ -59,12 +59,11 @@
     </td>
   </tr>
   <% unless can? :manage, Tender %>
-  <tr>
+  <!-- <tr>
     <td><b>Руководитель Pre-sale</b></td>
     <td>
-      <%= @tender.performer ? @tender.performer.full_name : "не назначен" %>
     </td>
-  </tr>
+  </tr> -->
   <% end %>
   <% if can? :manage, Tender %>
     <tr>
