@@ -6,5 +6,10 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-u1 = User.find_or_initialize_by(email: "admin@admin.com")
-u1.update({name: "admin", email: "admin@admin.com", password: "12345", password_confirmation: "12345", role: "admin"})
+admins = Role.where("ability#>>'{all, manage}' = ?", "true")
+
+if admins.exists?
+  admin_role = admins.first
+  u1 = User.find_or_initialize_by(email: "admin@admin.com")
+  u1.update({name: "admin", email: "admin@admin.com", password: "12345", password_confirmation: "12345", role_id: admin_role.id})
+end

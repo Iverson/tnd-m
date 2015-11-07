@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   load_and_authorize_resource :user, except: :create
-  before_action :set_message, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_roles, only: [:new, :edit]
 
   # GET /users
   # GET /users.json
@@ -69,8 +70,12 @@ class UsersController < ApplicationController
   end
 
   private
-  def set_message
+  def set_user
     @user = User.find(params[:id])
+  end
+
+  def set_roles
+    @roles = Role.all
   end
 
   def user_params

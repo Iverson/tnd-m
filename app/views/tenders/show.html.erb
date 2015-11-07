@@ -71,7 +71,7 @@
       <td>
         <%= form_for @tender, :html => {class: "", style: "width: 200px"} do |f| %>
         <div>
-          <% if current_user.role? :admin %>
+          <% if can? :manage, :all %>
             <div class="checkbox">
               <%= f.label :important do %>
                 <%= f.check_box :important, class: "" %>

@@ -31,8 +31,8 @@
   
 <% if can? :manage, User %>
   <div class="form-group">
-    <%= f.label :role %>
-    <%= f.collection_select :role, User::ROLES, :to_s, :humanize, {}, {class: "form-control"} %>
+    <%= f.label :role_id %>
+    <%= f.select :role_id, @roles.collect {|r| [ r.name, r.id ] }, {include_blank: "- Выбрать - "}, class: "form-control", autocomplete: "off" %>
   </div>
 <% end %>
 

@@ -1,0 +1,37 @@
+all:
+  - manage
+  - read
+role:
+  - manage
+  - read
+  - create
+  - update
+  - destroy
+user:
+  - manage
+  - read
+  - create
+  - update
+  - destroy
+tender:
+  - manage
+  - read
+  - create
+  - update
+  - destroy
+milestone:
+  - manage
+  - read
+  - create
+  - update
+  - destroy
+performer:
+  - manage
+  - read
+  - create
+  - update
+  - destroy
+comment:
+  - manage
+  - read
+  - create

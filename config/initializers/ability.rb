@@ -1,0 +1,1 @@
+ABILITY = YAML::load(IO.read("config/ability.yml"))

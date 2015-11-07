@@ -30,7 +30,7 @@
         <th width="100">Дата окончания</th>
         <th width="130" class="text-right">Начальная макс. цена (млн. руб)</th>
         <th width="240">Берем?</th>
-        <% if current_user.role? :admin %>
+        <% if can? :manage, :all %>
         <th width="170">Админ</th>
         <% end %>
         <!-- <th>docs_deadline</th> -->
@@ -60,7 +60,7 @@
           <%= render partial: "shared/votes", locals: {votes: tender.votes.order(value: :desc)} %>
           <%= render partial: "vote_form", locals: {tender: tender, vote: tender.votes.find_or_initialize_by(user_id: current_user.id)} %>
         </td>
-        <% if current_user.role? :admin %>
+        <% if can? :manage, :all %>
         <td>
           <%= form_for tender, :html => {class: ""} do |f| %>
             <div>

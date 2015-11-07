@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :roles, only: [:create, :update, :show, :new, :edit, :destroy]
   resources :users, path: '/user'
   resources :performers
 
