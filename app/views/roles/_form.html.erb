@@ -1,0 +1,43 @@
+<%= form_for(@role, :html => {class: "b-form b-form_wide", autocomplete: "off"}) do |f| %>
+  <% if @role.errors.any? %>
+    <div class="alert alert-danger">
+      <% @role.errors.full_messages.each do |message| %>
+        <p><%= message %></p>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+
+  <p><%#= @role.ability %></p>
+
+  <div class="form-group">
+    <%= f.label :ability %>
+    <%= f.fields_for :ability do |ability_form| %>
+      <table class="table table-fixed">
+        <tr>
+          <td width="100"></td>
+          <% @ability["actions"].each do |action| %>
+          <td class="text-center"><%= t("ability.actions.#{action}") %></td>
+          <% end %>
+        </tr>
+        <% @ability["resources"].each do |resource, actions| %>
+        <tr>
+          <td><%= t("ability.resources.#{resource}") %></td>
+          <%= render 'ability_form', role: @role, f: ability_form, actions: actions, resource: resource %>
+        </tr>
+        <% end %>
+      </table>
+    <% end %>
+
+    
+  </div>
+
+
+  <div class="actions">
+    <%= f.submit "Сохранить", class: "btn btn-lg btn-primary" %>
+  </div>
+<% end %>

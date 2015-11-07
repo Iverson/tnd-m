@@ -12,11 +12,14 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-left">
         <li class="<%= "active" if current_page?(tenders_path) %>"><%= link_to "Тендеры", tenders_path %></a></li>
-        <% if can? :manage, User %>
-        <li class="<%= "active" if current_page?(users_path) %>"><%= link_to "Пользователи", users_path %></a></li>
-        <% end %>
         <% if can? :manage, Performer %>
         <li class="<%= "active" if current_page?(performers_path) %>"><%= link_to "Исполнители", performers_path %></a></li>
+        <% end %>
+        <% if can? :manage, Role %>
+        <li class="<%= "active" if current_page?(roles_path) %>"><%= link_to "Роли", roles_path %></a></li>
+        <% end %>
+        <% if can? :manage, User %>
+        <li class="<%= "active" if current_page?(users_path) %>"><%= link_to "Пользователи", users_path %></a></li>
         <% end %>
       </ul>
 

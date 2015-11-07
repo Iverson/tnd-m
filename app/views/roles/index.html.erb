@@ -1,0 +1,25 @@
+<%= link_to "Создать роль", new_role_path, class: "btn btn-default pull-right" %>
+<h1 class="page-header"><%= t '.title' %></h1>
+
+<div class="table-responsive">
+  <table class="table table-hover table-fixed">
+    <thead>
+      <tr>
+        <th width="100">ID</th>
+        <th>Имя</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @roles.each do |role| %>
+      <tr>
+        <td><%= role.id %></td>
+        <td><%= role.name %></td>
+        <td class="text-right">
+          <%= link_to "Редактировать", edit_role_path(role), class: "btn btn-primary btn-xs" %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -95,6 +95,10 @@
   width: 400px;
 }
 
+.b-form_wide {
+  width: 700px;
+}
+
 .nobold {
   font-weight: normal;
 }

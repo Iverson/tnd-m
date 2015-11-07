@@ -11,32 +11,17 @@ class Ability
     #     can :read, :all
     #   end
 
+    can :update, User, id: user.id
+
     user.role.ability.each do |resource, actions|
       resource = (resource == "all") ? resource.to_sym : resource.classify.constantize
 
       actions.each do |action, allowed|
-        if allowed
+        if allowed == "1"
           can(action.to_sym, resource)
         end
       end
     end
-
-    # if user.role? :user
-    #   can :read, Tender
-    #   can :read, Milestone
-    #   can :manage, Comment
-    #   can :update, User, id: user.id
-    # end
-
-    # if user.role? :manager
-    #   can :manage, Tender
-    #   can :manage, Performer
-    # end
-
-    # if user.role? :admin
-    #   can :manage, :all
-    # end
-
 
     #
     # The first argument to `can` is the action you are giving the user 

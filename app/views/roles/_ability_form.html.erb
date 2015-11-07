@@ -1,0 +1,10 @@
+<%#= f.label :name %>
+<%= f.fields_for resource.to_sym do |resource_form| %>
+  <% @ability["actions"].each do |action| %>
+    <td class="text-center">
+      <% if actions.include? action %>
+        <%= resource_form.check_box action.to_sym, {checked: role.ability[resource] && role.ability[resource][action] == "1"} %>
+      <% end %>
+    </td>
+  <% end %>
+<% end %>

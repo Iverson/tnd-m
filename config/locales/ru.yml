@@ -15,6 +15,14 @@ ru:
     <<: *crud
     new:
       title: Новый этап
+  roles:
+    <<: *crud
+    new:
+      title: Новая роль
+    index:
+      title: Управление ролями
+    edit:
+      title: Редактирование роли
   activerecord:
     attributes:
       milestone:
@@ -23,3 +31,21 @@ ru:
         estimate_date: Планируемая дата
         tender_date: Дата согласно конкурсу
         complete_date: Дата фактического выполнения
+      role:
+        <<: *default_attributes
+        ability: Права
+  ability:
+    actions:
+      manage: Все
+      read: Смотреть
+      create: Создавать
+      update: Редактировать
+      destroy: Удалять
+    resources:
+      all: Все
+      role: Роли
+      user: Пользователи
+      tender: Тендеры
+      milestone: Этапы
+      comment: Комментарии
+      performer: Исполнители

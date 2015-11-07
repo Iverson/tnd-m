@@ -80,6 +80,6 @@ class UsersController < ApplicationController
 
   def user_params
     params[:password_confirmation] = params[:password] if params[:password]
-    params.require(:user).permit(:name, :position, :email, :password, :password_confirmation, :role)
+    params.require(:user).permit(:name, :position, :email, :password, :password_confirmation, :role_id)
   end
 end
