@@ -157,3 +157,25 @@
     .b-tender__data tr:first-child td {
       border-top: none;
     }
+
+.sortable {
+  color: #000;
+  text-decoration: none !important;
+}
+
+.sortable.current {
+}
+
+.sortable.current:after {
+  display: inline;
+  content: "";
+  margin-left: 5px;
+}
+
+.sortable.asc:after {
+  content: "↑";
+}
+
+.sortable.desc:after {
+  content: "↓";
+}

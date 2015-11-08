@@ -1,9 +1,11 @@
 class TendersController < ApplicationController
+  helper_method :sort_column, :sort_direction
   load_and_authorize_resource :tender
   before_action :set_tender, only: [:show, :edit, :update, :destroy]
 
   def index
-    @tenders    = Tender.all.order(important: :desc, necessary: :desc, created_at: :asc)
+    sort = sort_column ? sort_column + " " + sort_direction : {important: :desc, necessary: :desc, created_at: :asc}
+    @tenders    = Tender.order(sort)
     @performers = Performer.all
   end
 
@@ -84,6 +86,14 @@ class TendersController < ApplicationController
   end
 
   private
+
+  def sort_column
+    Tender.column_names.include?(params[:sort]) ? params[:sort] : nil
+  end
+  
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+  end
 
   def set_tender
     @tender = Tender.find(params[:id])

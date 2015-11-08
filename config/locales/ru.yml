@@ -56,6 +56,10 @@ ru:
       title: Редактирование лицензии
   activerecord:
     attributes:
+      tender:
+        <<: *default_attributes
+        start_date: Дата начала
+        end_date: Дата завершения приема заявок
       milestone:
         <<: *default_attributes
         performer_id: Ответственный
