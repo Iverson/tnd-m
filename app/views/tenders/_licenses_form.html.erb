@@ -12,17 +12,17 @@
         <p>Есть в наличии?</p>
 
         <%= license.label :available_1, "Да", class: 'radio-inline' do %>
-        <%= license.radio_button :available, 1, class: "", "ng-model": "licenses[#{i}]" %>
+        <%= license.radio_button :available, 1, :class => "", "ng-model" => "licenses[#{i}]" %>
         Да
         <% end %>
 
         <%= license.label :available_0, "Нет", class: 'radio-inline' do %>
-        <%= license.radio_button :available, 0, class: "", "ng-model": "licenses[#{i}]" %>
+        <%= license.radio_button :available, 0, :class => "", "ng-model" => "licenses[#{i}]" %>
         Нет
         <% end %>
 
         <%= license.label :available_2, "Аналог", class: 'radio-inline' do %>
-        <%= license.radio_button :available, 2, class: "", "ng-model": "licenses[#{i}]" %>
+        <%= license.radio_button :available, 2, :class => "", "ng-model" => "licenses[#{i}]" %>
         Аналог
         <% end %>
       </div>
