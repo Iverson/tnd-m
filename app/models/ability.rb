@@ -14,12 +14,22 @@ class Ability
     can :update, User, id: user.id
 
     user.role.ability.each do |resource, actions|
-      resource = (resource == "all") ? resource.to_sym : resource.classify.constantize
+      if resource[0] == "_"
+        if actions["update"] == "1"
+          w = resource.split("_")
+          w.shift
+          action = "assign_#{w.pop}"
+          resource = w.join("_").classify.constantize
+        
+          can(action.to_sym, resource) 
+          # can(:update, resource)
+        end
+      else
+        resource = (resource == "all") ? resource.to_sym : resource.classify.constantize
+      end
 
       actions.each do |action, allowed|
-        if allowed == "1"
-          can(action.to_sym, resource)
-        end
+        can(action.to_sym, resource) if allowed == "1"
       end
     end
 

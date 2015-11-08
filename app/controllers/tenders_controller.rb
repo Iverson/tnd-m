@@ -19,6 +19,7 @@ class TendersController < ApplicationController
   end
 
   def update
+    authorize! :assign_vgo, Tender unless tender_params[:is_vgo].blank?
     @tender.update(tender_params)
 
     respond_to do |format|
@@ -87,6 +88,6 @@ class TendersController < ApplicationController
   end
 
   def tender_params
-    params.require(:tender).permit(:performer_id, :important, :necessary, licenses_attributes: [:id, :license_id, :tender_id, :available, :analog, :_destroy], beneficiary_attributes: [:id, :disclosed, :comment])
+    params.require(:tender).permit(:performer_id, :important, :necessary, :is_vgo, licenses_attributes: [:id, :license_id, :tender_id, :available, :analog, :_destroy], beneficiary_attributes: [:id, :disclosed, :comment])
   end
 end

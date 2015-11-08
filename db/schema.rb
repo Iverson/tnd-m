@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151108110249) do
+ActiveRecord::Schema.define(version: 20151108125205) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -113,6 +113,7 @@ ActiveRecord::Schema.define(version: 20151108110249) do
     t.integer  "performer_id"
     t.boolean  "important",         default: false, null: false
     t.boolean  "necessary",         default: false, null: false
+    t.boolean  "is_vgo"
   end
 
   add_index "tenders", ["performer_id"], name: "index_tenders_on_performer_id", using: :btree

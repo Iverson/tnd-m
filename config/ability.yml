@@ -26,6 +26,7 @@ resources:
     - create
     - update
     - destroy
+    - destroy
   milestone:
     - manage
     - read
@@ -58,4 +59,6 @@ resources:
     - manage
     - read
     - create
+    - update
+  _tender_vgo:
     - update

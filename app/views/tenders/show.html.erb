@@ -86,6 +86,16 @@
       <% end %>
     </td>
   </tr>
+  <tr>
+    <td><b>Прошло сверку ВГО</b></td>
+    <td>
+      <% if can? :assign_vgo, Tender %>
+        <%= render partial: "vgo_form", locals: {tender: @tender} %>
+      <% else %>
+        <%= @tender.is_vgo %>
+      <% end %>
+    </td>
+  </tr>
   <% if can? :manage, Tender %>
     <tr>
       <td><b>Администратор</b></td>

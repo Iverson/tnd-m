@@ -31,6 +31,7 @@ ru:
       license: Лицензии
       tender_license: Лицензии в тендере
       tender_beneficiary: Бенефициары
+      _tender_vgo: Сверка ВГО (Тендеры)
   milestones:
     <<: *crud
     new:
