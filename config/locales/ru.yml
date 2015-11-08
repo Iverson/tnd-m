@@ -30,6 +30,7 @@ ru:
       performer: Исполнители
       license: Лицензии
       tender_license: Лицензии в тендере
+      tender_beneficiary: Бенефициары
   milestones:
     <<: *crud
     new:

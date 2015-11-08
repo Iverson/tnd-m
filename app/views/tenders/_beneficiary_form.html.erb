@@ -1,0 +1,20 @@
+<%= form_for tender, :html => {class: "", style: "width: 240px"} do |f| %>
+<div>
+  <%= f.fields_for :beneficiary do |b_form| %>
+    <div class="checkbox">
+      <%= b_form.label :disclosed, class: "" do %>
+        <%= b_form.check_box :disclosed, class: "" %>
+        Раскрыт
+      <% end %>
+    </div>
+
+    <div class="form-group">
+      <%= b_form.text_field :comment, class: "form-control", placeholder: "Комментарий" %>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.submit "Сохранить", class: "btn btn-primary btn-xs" %>
+  </div>
+<div>
+<% end %>

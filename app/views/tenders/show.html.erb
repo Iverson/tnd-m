@@ -75,6 +75,17 @@
       <% end %>
     </td>
   </tr>
+  <tr>
+    <td><b>Бенефициар</b></td>
+    <td>
+      <% if can? :manage, TenderBeneficiary %>
+        <%= render partial: "beneficiary_form", locals: {tender: @tender} %>
+      <% else %>
+        <p><%= beneficiary(@tender.beneficiary) %></p>
+        <p class="text-muted"><%= @tender.beneficiary.comment %></p>
+      <% end %>
+    </td>
+  </tr>
   <% if can? :manage, Tender %>
     <tr>
       <td><b>Администратор</b></td>

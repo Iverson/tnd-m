@@ -18,4 +18,9 @@ module ApplicationHelper
 
     license.available == 1 ? "Есть" : "Нет"
   end
+
+  def beneficiary(b)
+    return "-" if b.disclosed.blank?
+    b.disclosed ? "Раскрыт" : "Не раскрыт"
+  end
 end

@@ -14,6 +14,8 @@ class TendersController < ApplicationController
       @licenses = License.all
       @tender.licenses.build
     end
+
+    @tender.beneficiary || @tender.build_beneficiary
   end
 
   def update
@@ -85,6 +87,6 @@ class TendersController < ApplicationController
   end
 
   def tender_params
-    params.require(:tender).permit(:performer_id, :important, :necessary, licenses_attributes: [:id, :license_id, :tender_id, :available, :analog, :_destroy])
+    params.require(:tender).permit(:performer_id, :important, :necessary, licenses_attributes: [:id, :license_id, :tender_id, :available, :analog, :_destroy], beneficiary_attributes: [:id, :disclosed, :comment])
   end
 end

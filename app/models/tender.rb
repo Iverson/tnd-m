@@ -5,12 +5,14 @@ class Tender < ActiveRecord::Base
 
   ATTRIBUTES = ["id", "seldon_id", "name", "customer", "tender_milestones", "url", "start_date", "end_date", "start_max_price", "docs_deadline", "approve_deadline", "completion_date"]
 
+  has_one :beneficiary, class_name: 'TenderBeneficiary', :dependent => :destroy
   has_many :comments, as: :commentable, :dependent => :destroy
   has_many :milestones, :dependent => :destroy
   has_many :votes, class_name: 'TenderVote', :dependent => :destroy
   has_many :licenses, class_name: 'TenderLicense', :dependent => :destroy
 
   accepts_nested_attributes_for :licenses, :reject_if => lambda { |o| o[:license_id].blank? }, :allow_destroy => true
+  accepts_nested_attributes_for :beneficiary
 
   def self.to_csv(options = {})
     CSV.generate(options) do |csv|

@@ -54,3 +54,8 @@ resources:
     - create
     - update
     - destroy
+  tender_beneficiary:
+    - manage
+    - read
+    - create
+    - update
