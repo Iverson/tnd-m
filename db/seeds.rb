@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-admins = Role.where("ability#>>'{all, manage}' = ?", "true")
+admins = Role.where("ability#>>'{all, manage}' = ?", "1")
 
 if admins.exists?
   admin_role = admins.first

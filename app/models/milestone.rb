@@ -5,6 +5,10 @@ class Milestone < ActiveRecord::Base
 
   validates :name, presence: true
 
+  def code?(value)
+    code == value
+  end
+
   def self.to_text
     string = ""
     milestones = []

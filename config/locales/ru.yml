@@ -59,6 +59,7 @@ ru:
       milestone:
         <<: *default_attributes
         performer_id: Ответственный
+        lead_time: Время выполнения задания
         estimate_date: Планируемая дата
         tender_date: Дата согласно конкурсу
         complete_date: Дата фактического выполнения

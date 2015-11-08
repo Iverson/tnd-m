@@ -1,6 +1,8 @@
 <div>
   <p>Вы назначены ответственным за <b>"<%= @milestone.name %>"</b> тендера <b>"<%= @tender.name.html_safe %>"</b></p>
   
+  <p>Срок выполнения: <%= @milestone.lead_time %></p>
+
   <table class="table">
   <tr>
     <td width="240"><b>Seldon Id</b></td>

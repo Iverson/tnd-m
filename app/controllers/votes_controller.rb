@@ -11,6 +11,7 @@ class VotesController < ApplicationController
 
   def vote
     @vote.update(vote_params)
+    @vote.tender.check_pre_sale if vote_params[:value] == "true" && current_user.is_admin?
 
     respond_to do |format|
       format.html { redirect_to :back, notice: 'Вы успешно проголосовали.' }

@@ -3,7 +3,8 @@ class TendersController < ApplicationController
   before_action :set_tender, only: [:show, :edit, :update, :destroy]
 
   def index
-    @tenders = Tender.all.order(important: :desc, necessary: :desc, created_at: :asc)
+    @tenders    = Tender.all.order(important: :desc, necessary: :desc, created_at: :asc)
+    @performers = Performer.all
   end
 
   def show
@@ -21,6 +22,7 @@ class TendersController < ApplicationController
   def update
     authorize! :assign_vgo, Tender unless tender_params[:is_vgo].blank?
     @tender.update(tender_params)
+    @tender.check_pre_sale if tender_params[:necessary] == "1" && current_user.is_admin?
 
     respond_to do |format|
       format.html { redirect_to :back, notice: 'Данные сохранены.' }

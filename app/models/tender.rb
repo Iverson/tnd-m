@@ -14,6 +14,16 @@ class Tender < ActiveRecord::Base
   accepts_nested_attributes_for :licenses, :reject_if => lambda { |o| o[:license_id].blank? }, :allow_destroy => true
   accepts_nested_attributes_for :beneficiary
 
+  def check_pre_sale
+    unless presale
+      milestones.create(name: "PRE-SALE", code: "presale")
+    end
+  end
+
+  def presale
+    @presale ||= milestones.find_by(code: "presale")
+  end
+
   def self.to_csv(options = {})
     CSV.generate(options) do |csv|
       csv << COLUMNS

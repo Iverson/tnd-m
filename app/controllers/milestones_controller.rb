@@ -34,7 +34,7 @@ class MilestonesController < ApplicationController
     respond_to do |format|
       if @milestone.update(milestone_params)
         send_email_if_performer_set(current_performer_id)
-        format.html { redirect_to tender_milestone_path(@tender, @milestone), notice: t('.success') }
+        format.html { redirect_to :back, notice: t('.success') }
       else
         format.html { render :new }
       end
@@ -64,6 +64,6 @@ class MilestonesController < ApplicationController
   end
 
   def milestone_params
-    params.require(:milestone).permit(:name, :performer_id, :estimate_date, :tender_date, :complete_date)
+    params.require(:milestone).permit(:name, :performer_id, :lead_time, :estimate_date, :tender_date, :complete_date)
   end
 end

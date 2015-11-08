@@ -30,6 +30,7 @@
         <th width="140">Дата завершения приема заявок</th>
         <th width="140" class="text-right">Начальная макс. цена (млн. руб)</th>
         <th width="240">Участвуем?</th>
+        <th width="170">Руководитель PRE-SALE</th>
         <% if can? :manage, :all %>
         <th width="170">Админ</th>
         <% end %>
@@ -59,6 +60,15 @@
         <td class="tenders-table__votes">
           <%= render partial: "shared/votes", locals: {votes: tender.votes.order(value: :desc)} %>
           <%= render partial: "vote_form", locals: {tender: tender, vote: tender.votes.find_or_initialize_by(user_id: current_user.id)} %>
+        </td>
+        <td>
+          <% if tender.presale %>
+            <% if can? :manage, Milestone %>
+              <%= render partial: "presale_manager_form", locals: {tender: tender, milestone: tender.presale} if tender.presale %>
+            <% else %>
+              <%= tender.presale.performer ? tender.presale.performer.full_name : "не назначен" %>
+            <% end %>
+          <% end %>
         </td>
         <% if can? :manage, :all %>
         <td>

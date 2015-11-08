@@ -1,0 +1,15 @@
+<%= form_for([tender, milestone], :html => {class: "", autocomplete: "off"}) do |f| %>
+  <div class="form-group">
+    <%= f.select :performer_id, @performers.collect {|u| [ u.full_name, u.id ] }, {include_blank: '- Выбрать -'}, class: "form-control input-sm", autocomplete: "off" %>
+  </div>
+  
+  <% if milestone.code? "presale" %>
+  <div class="form-group">
+    <%= f.text_field :lead_time, class: "form-control input-sm", placeholder: Milestone.human_attribute_name(:lead_time) %>
+  </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.submit "Назначить", class: "btn btn-default btn-xs" %>
+  </div>
+<% end %>

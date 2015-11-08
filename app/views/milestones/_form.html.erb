@@ -9,13 +9,20 @@
 
   <div class="form-group">
     <%= f.label :name %>
-    <%= f.text_field :name, class: "form-control", required: true %>
+    <%= f.text_field :name, class: "form-control", required: true, disabled: @milestone.code?("presale") %>
   </div>
 
   <div class="form-group">
     <%= f.label :performer_id %>
     <%= f.select :performer_id, @performers.collect {|u| [ u.full_name, u.id ] }, {include_blank: '- Выбрать -'}, class: "form-control", autocomplete: "off" %>
   </div>
+  
+  <% if @milestone.code? "presale" %>
+  <div class="form-group">
+    <%= f.label :lead_time %>
+    <%= f.text_field :lead_time, class: "form-control" %>
+  </div>
+  <% end %>
 
   <div class="form-group">
     <%= f.label :estimate_date %>

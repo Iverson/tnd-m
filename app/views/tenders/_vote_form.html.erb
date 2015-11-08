@@ -1,14 +1,13 @@
 <%= form_for vote, url: vote.new_record? ? tender_votes_path(tender) : tender_vote_path(tender, vote), :html => {class: "form-inline vote-form"} do |f| %>
+  <% index = (rand * 1000).to_i %>
   <div>
     <div class="form-group">
-      <%= f.label :value_true, "Да", class: 'radio-inline' do %>
-      <%= f.radio_button :value, true, class: "" %>
-      Да
+      <%= f.label "#{index}_true", "Да", class: 'radio-inline' do %>
+        <%= f.radio_button :value, true, class: "", id: "tender_vote_#{index}_true" %> Да
       <% end %>
 
-      <%= f.label :value_false, "Нет", class: 'radio-inline' do %>
-      <%= f.radio_button :value, false, class: "" %>
-      Нет
+      <%= f.label "#{index}_false", "Нет", class: 'radio-inline' do %>
+        <%= f.radio_button :value, false, class: "", id: "tender_vote_#{index}_false" %> Нет
       <% end %>
     </div>&nbsp;&nbsp;&nbsp;&nbsp;
     <div class="form-group">

@@ -11,6 +11,10 @@ class User < ActiveRecord::Base
     position? ? position : name
   end
 
+  def is_admin?
+    role.ability["all"]["manage"] == "1"
+  end
+
   private
   def password_required?
     new_record? ? super : false

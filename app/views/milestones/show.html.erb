@@ -5,6 +5,12 @@
     <td width="240"><b><%= Milestone.human_attribute_name(:performer_id) %></b></td>
     <td><%= @milestone.performer ? @milestone.performer.full_name : "не назначен" %></td>
   </tr>
+  <% if @milestone.code? "presale" %>
+  <tr>
+    <td><b><%= Milestone.human_attribute_name(:lead_time) %></b></td>
+    <td><%= @milestone.lead_time %></td>
+  </tr>
+  <% end %>
   <tr>
     <td><b><%= Milestone.human_attribute_name(:estimate_date) %></b></td>
     <td><%= @milestone.estimate_date %></td>
