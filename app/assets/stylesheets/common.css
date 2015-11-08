@@ -6,6 +6,10 @@
   border: none;
 }
 
+.nopadding {
+  padding: 0;
+}
+
 .detailBox {
     /*width:640px;*/
     border:1px solid #bbb;
@@ -107,6 +111,12 @@
   position: absolute;
   transform: translate(-100%, -9px) rotate(-90deg);
   transform-origin: 100% 0;
+  -webkit-transform: translate(-100%, -9px) rotate(-90deg);
+  -webkit-transform-origin: 100% 0;
+  -o-transform: translate(-100%, -9px) rotate(-90deg);
+  -o-transform-origin: 100% 0;
+  -moz-transform: translate(-100%, -9px) rotate(-90deg);
+  -moz-transform-origin: 100% 0;
   margin-left: -24px;
   font-weight: normal;
   font-size: 10px;

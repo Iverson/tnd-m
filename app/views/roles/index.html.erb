@@ -1,4 +1,4 @@
-<%= link_to "Создать роль", new_role_path, class: "btn btn-default pull-right" %>
+<%= link_to t('.create'), new_role_path, class: "btn btn-default pull-right" %>
 <h1 class="page-header"><%= t '.title' %></h1>
 
 <div class="table-responsive">
@@ -16,7 +16,7 @@
         <td><%= role.id %></td>
         <td><%= role.name %></td>
         <td class="text-right">
-          <%= link_to "Редактировать", edit_role_path(role), class: "btn btn-primary btn-xs" %>
+          <%= link_to t("edit"), edit_role_path(role), class: "btn btn-primary btn-xs" %>
         </td>
       </tr>
       <% end %>

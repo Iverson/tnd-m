@@ -42,3 +42,15 @@ resources:
     - manage
     - read
     - create
+  license:
+    - manage
+    - read
+    - create
+    - update
+    - destroy
+  tender_license:
+    - manage
+    - read
+    - create
+    - update
+    - destroy

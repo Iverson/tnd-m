@@ -10,4 +10,12 @@ module ApplicationHelper
   def price(value)
     (value / 1000000).round(2)
   end
+
+  def license_available(license)
+    if license.available == 2
+      return "аналог (#{license.analog})"
+    end
+
+    license.available == 1 ? "Есть" : "Нет"
+  end
 end

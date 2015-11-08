@@ -1,0 +1,18 @@
+<%= form_for(@license, :html => {class: "b-form b-form_wide", autocomplete: "off"}) do |f| %>
+  <% if @license.errors.any? %>
+    <div class="alert alert-danger">
+      <% @license.errors.full_messages.each do |message| %>
+        <p><%= message %></p>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Сохранить", class: "btn btn-lg btn-primary" %>
+  </div>
+<% end %>

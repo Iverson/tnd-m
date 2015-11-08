@@ -9,6 +9,11 @@ class TendersController < ApplicationController
   def show
     @vote = @tender.votes.find_or_initialize_by(user_id: current_user.id)
     @colleagues_votes = @tender.votes.order(value: :desc)
+
+    if can? :manage, TenderLicense
+      @licenses = License.all
+      @tender.licenses.build
+    end
   end
 
   def update
@@ -80,6 +85,6 @@ class TendersController < ApplicationController
   end
 
   def tender_params
-    params.require(:tender).permit(:performer_id, :important, :necessary)
+    params.require(:tender).permit(:performer_id, :important, :necessary, licenses_attributes: [:id, :license_id, :tender_id, :available, :analog, :_destroy])
   end
 end

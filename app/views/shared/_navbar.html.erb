@@ -15,6 +15,9 @@
         <% if can? :manage, Performer %>
         <li class="<%= "active" if current_page?(performers_path) %>"><%= link_to "Исполнители", performers_path %></a></li>
         <% end %>
+        <% if can? :manage, License %>
+        <li class="<%= "active" if current_page?(licenses_path) %>"><%= link_to "Лицензии", licenses_path %></a></li>
+        <% end %>
         <% if can? :manage, Role %>
         <li class="<%= "active" if current_page?(roles_path) %>"><%= link_to "Роли", roles_path %></a></li>
         <% end %>

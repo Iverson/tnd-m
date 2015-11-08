@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151107095431) do
+ActiveRecord::Schema.define(version: 20151108082200) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,12 @@ ActiveRecord::Schema.define(version: 20151107095431) do
 
   add_index "comments", ["commentable_id"], name: "index_comments_on_commentable_id", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
+
+  create_table "licenses", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "milestones", force: :cascade do |t|
     t.string   "name",          null: false
@@ -56,6 +62,18 @@ ActiveRecord::Schema.define(version: 20151107095431) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "tender_licenses", force: :cascade do |t|
+    t.integer  "license_id"
+    t.integer  "tender_id"
+    t.integer  "available"
+    t.string   "analog"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "tender_licenses", ["license_id"], name: "index_tender_licenses_on_license_id", using: :btree
+  add_index "tender_licenses", ["tender_id"], name: "index_tender_licenses_on_tender_id", using: :btree
 
   create_table "tender_votes", force: :cascade do |t|
     t.boolean  "value",      null: false
@@ -115,6 +133,8 @@ ActiveRecord::Schema.define(version: 20151107095431) do
   add_foreign_key "comments", "users"
   add_foreign_key "milestones", "performers"
   add_foreign_key "milestones", "tenders"
+  add_foreign_key "tender_licenses", "licenses"
+  add_foreign_key "tender_licenses", "tenders"
   add_foreign_key "tender_votes", "tenders"
   add_foreign_key "tender_votes", "users"
 end

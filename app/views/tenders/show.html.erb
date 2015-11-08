@@ -47,7 +47,7 @@
     <td><%= @tender.completion_date %></td>
   </tr>
   <tr>
-    <td><b>Берем?</b></td>
+    <td><b>Участвуем?</b></td>
     <td>
       <%= render partial: "vote_form", locals: {tender: @tender, vote: @vote} %>
     </td>
@@ -65,32 +65,21 @@
     </td>
   </tr> -->
   <% end %>
+  <tr>
+    <td><b>Лицензии</b></td>
+    <td>
+      <% if can? :manage, TenderLicense %>
+        <%= render partial: "licenses_form", locals: {tender: @tender} %>
+      <% else %>
+        <%= render partial: "licenses_list", locals: {tender: @tender} %>
+      <% end %>
+    </td>
+  </tr>
   <% if can? :manage, Tender %>
     <tr>
       <td><b>Администратор</b></td>
       <td>
-        <%= form_for @tender, :html => {class: "", style: "width: 200px"} do |f| %>
-        <div>
-          <% if can? :manage, :all %>
-            <div class="checkbox">
-              <%= f.label :important do %>
-                <%= f.check_box :important, class: "" %>
-                Отметить как срочный
-              <% end %>
-            </div>
-            <div class="checkbox">
-              <%= f.label :necessary, class: "text-danger" do %>
-                <%= f.check_box :necessary, class: "" %>
-                Участвуем обязательно!
-              <% end %>
-            </div>
-          <% end %>
-          
-          <div class="form-group">
-            <%= f.submit "Сохранить", class: "btn btn-sm btn-primary" %>
-          </div>
-        </div>
-        <% end %>
+        <%= render partial: "admin_form", locals: {tender: @tender} %>
       </td>
     </tr>
   <% end %>

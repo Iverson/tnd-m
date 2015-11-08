@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   resources :roles
   resources :users, path: '/user'
   resources :performers
+  resources :licenses
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -1,0 +1,12 @@
+<table class="table table-condensed table-bordered" style="width: 500px">
+  <tr>
+    <th>Название</th>
+    <th>Есть в наличии?</th>
+  </tr>
+  <% tender.licenses.each do |license| %>
+  <tr>
+    <td><%= license.license.name %></td>
+    <td><%= license_available(license) %></td>
+  </tr>
+  <% end %>
+</table>

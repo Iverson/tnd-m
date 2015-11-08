@@ -1,0 +1,22 @@
+<%= form_for tender, :html => {class: "", style: "width: 240px"} do |f| %>
+  <div>
+    <% if can? :manage, :all %>
+    <div class="checkbox">
+      <%= f.label :important do %>
+      <%= f.check_box :important, class: "" %>
+      Отметить как срочный
+      <% end %>
+    </div>
+    <div class="checkbox">
+      <%= f.label :necessary, class: "text-danger" do %>
+      <%= f.check_box :necessary, class: "" %>
+      Участвуем обязательно!
+      <% end %>
+    </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= f.submit "Сохранить", class: "btn btn-xs btn-primary" %>
+    </div>
+  </div>
+<% end %>

@@ -2,6 +2,8 @@ class Comment < ActiveRecord::Base
   belongs_to :commentable, polymorphic: true
   belongs_to :user
 
+  validates :message, presence: true
+
   def self.to_text(options = {})
   	comments = [];
 

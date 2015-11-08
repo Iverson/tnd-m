@@ -1,0 +1,50 @@
+<%= form_for tender, :html => {class: "", style: "width: 240px"} do |f| %>
+  <ul class="list-group" ng-init="licenses = []">
+
+    <%= f.fields_for :licenses do |license| %>
+    <li ng-if="<%= !license.object.new_record? %> || addLicense" class="list-group-item">
+      <% i = license.options[:child_index] %>
+      <div class="form-group">
+        <%= license.select :license_id, @licenses.collect {|o| [ o.name, o.id ] }, {include_blank: '- Выбрать -'}, class: "form-control", autocomplete: "off" %>
+      </div>
+
+      <div class="form-group" ng-init="licenses[<%= i %>] = <%= license.object.available || "null" %>">
+        <p>Есть в наличии?</p>
+
+        <%= license.label :available_1, "Да", class: 'radio-inline' do %>
+        <%= license.radio_button :available, 1, class: "", "ng-model": "licenses[#{i}]" %>
+        Да
+        <% end %>
+
+        <%= license.label :available_0, "Нет", class: 'radio-inline' do %>
+        <%= license.radio_button :available, 0, class: "", "ng-model": "licenses[#{i}]" %>
+        Нет
+        <% end %>
+
+        <%= license.label :available_2, "Аналог", class: 'radio-inline' do %>
+        <%= license.radio_button :available, 2, class: "", "ng-model": "licenses[#{i}]" %>
+        Аналог
+        <% end %>
+      </div>
+
+      <div class="form-group" ng-if="licenses[<%= i %>] == '2'">
+        <%= license.text_field :analog, class: "form-control", placeholder: "Название аналога" %>
+      </div>
+
+      <div class="checkbox">
+        <%= license.label :_destroy do %>
+        <%= license.check_box :_destroy, class: "" %>
+        <%= t('destroy') %>
+        <% end %>
+      </div>
+
+    </li>
+    <% end %>
+    <span ng-hide="addLicense" ng-click="addLicense = true" class="btn btn-xs btn-link nopadding">+ Добавить лицензию</span>
+  </ul>
+  
+
+  <div class="form-group">
+    <%= f.submit "Сохранить", class: "btn btn-primary btn-xs" %>
+  </div>
+<% end %>
