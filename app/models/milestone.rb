@@ -15,7 +15,7 @@ class Milestone < ActiveRecord::Base
 
     all.each do |milestone|
       milestones << %Q(#{milestone.name}
-#{Milestone.human_attribute_name(:performer_id)} - #{milestone.performer.full_name}
+#{Milestone.human_attribute_name(:performer_id)} - #{milestone.performer.full_name if milestone.performer}
 #{Milestone.human_attribute_name(:estimate_date)} - #{milestone.estimate_date}
 #{Milestone.human_attribute_name(:tender_date)} - #{milestone.tender_date}
 #{Milestone.human_attribute_name(:complete_date)} - #{milestone.complete_date})

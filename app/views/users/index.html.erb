@@ -8,6 +8,7 @@
         <th width="100">ID</th>
         <th>Имя</th>
         <th>Email</th>
+        <th>Должность</th>
         <th>Роль</th>
         <th></th>
       </tr>
@@ -18,6 +19,7 @@
         <td><%= user.id %></td>
         <td><%= user.name %></td>
         <td><%= user.email %></td>
+        <td><%= user.position %></td>
         <td><%= user.role.name if user.role %></td>
         <td class="text-right">
           <%= link_to "Редактировать", edit_user_path(user), class: "btn btn-primary btn-xs" %>

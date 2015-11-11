@@ -9,7 +9,7 @@
   <% end %>
 <% end %>
 <h1 class="page-header">
-  Тендеры
+  Процедуры закупок
 </h1>
 
 <% if can?(:manage, Tender) && !@tenders.empty? %>
@@ -29,7 +29,7 @@
         <th width="100"><%= sortable "start_date" %></th>
         <th width="140"><%= sortable "end_date" %></th>
         <th width="140" class="text-right">Начальная макс. цена (млн. руб)</th>
-        <th width="240">Участвуем?</th>
+        <th width="240">Прорабатываем участие?</th>
         <th width="170">Руководитель PRE-SALE</th>
         <% if can? :manage, :all %>
         <th width="170">Админ</th>
