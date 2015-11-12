@@ -62,3 +62,5 @@ resources:
     - update
   _tender_vgo:
     - update
+  _tender_presale:
+    - update

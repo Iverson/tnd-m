@@ -63,7 +63,7 @@
         </td>
         <td>
           <% if tender.presale %>
-            <% if can? :manage, Milestone %>
+            <% if can?(:assign_presale, Tender) %>
               <%= render partial: "presale_manager_form", locals: {tender: tender, milestone: tender.presale} if tender.presale %>
             <% else %>
               <%= tender.presale.performer ? tender.presale.performer.full_name : "не назначен" %>

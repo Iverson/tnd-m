@@ -12,9 +12,17 @@
 </div>
 <% end %>
 
+<% if @milestone && @milestone.code?("presale") && can?(:assign_presale, Tender) && cannot?(:manage, Milestone) %>
+<div class="pull-right">
+  <% if @milestone %>
+  <%= link_to "Редактировать этап", edit_tender_milestone_path(@tender, @milestone), class: "btn btn-primary btn-sm" %>
+  <% end %>
+</div>
+<% end %>
+
 <ul class="nav nav-pills b-tender__nav">
   <li class="<%= "active" if current_page?(tender_path(tender)) %>"><%= link_to "Общая информация", tender %></a></li>
-  <% tender.milestones.where.not(id: nil).each do |milestone| %>
+  <% tender.milestones.where.not(id: nil).order(id: :asc).each do |milestone| %>
   <li class="<%= "active" if current_page?(tender_milestone_path(tender, milestone)) %>"><%= link_to milestone.name, tender_milestone_path(tender, milestone) %></a></li>
   <% end %>
 </ul>

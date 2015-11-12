@@ -1,5 +1,5 @@
 class MilestonesController < ApplicationController
-  load_and_authorize_resource :milestone, except: :create
+  load_and_authorize_resource :milestone, only: [:show, :new, :create, :destroy]
   before_action :set_tender
   before_action :set_milestone, only: [:show, :edit, :update, :destroy]
 
@@ -12,6 +12,7 @@ class MilestonesController < ApplicationController
   end
 
   def edit
+    authorize_update
     @performers = Performer.all
   end
 
@@ -29,8 +30,9 @@ class MilestonesController < ApplicationController
   end
 
   def update
+    authorize_update
     current_performer_id = @milestone.performer_id
-    
+
     respond_to do |format|
       if @milestone.update(milestone_params)
         send_email_if_performer_set(current_performer_id)
@@ -65,5 +67,13 @@ class MilestonesController < ApplicationController
 
   def milestone_params
     params.require(:milestone).permit(:name, :performer_id, :lead_time, :estimate_date, :tender_date, :complete_date)
+  end
+
+  def authorize_update
+    if @milestone.code? "presale"
+      authorize! :assign_presale, Tender if @milestone.code? "presale"
+    else
+      authorize! :update, Milestone
+    end
   end
 end
