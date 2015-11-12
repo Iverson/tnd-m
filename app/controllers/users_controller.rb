@@ -45,10 +45,10 @@ class UsersController < ApplicationController
     need_relogin = (@user.id == current_user.id)
     respond_to do |format|
       if @user.update(user_params)
-        if need_relogin
-          current_user = @user
-          sign_in(current_user, :bypass=>true)
-        end
+        # if need_relogin
+        #   current_user = @user
+        #   sign_in(current_user, :bypass=>true)
+        # end
 
         format.html { redirect_to edit_user_url(@user), notice: 'Пользователь успешно обновлен.' }
         format.json { render :show, status: :ok, location: @user }
