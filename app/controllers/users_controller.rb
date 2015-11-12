@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   load_and_authorize_resource :user, except: :create
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :set_roles, only: [:new, :edit]
+  before_action :set_roles, only: [:new, :edit, :create, :update]
 
   # GET /users
   # GET /users.json
