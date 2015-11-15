@@ -31,8 +31,8 @@
         <th width="140" class="text-right">Начальная макс. цена (млн. руб)</th>
         <th width="240">Прорабатываем участие?</th>
         <th width="170">Руководитель PRE-SALE</th>
-        <% if can? :manage, :all %>
-        <th width="170">Админ</th>
+        <% if can?(:manage, :all) || can?(:assign_important, Tender) %>
+        <th width="170">Настройки</th>
         <% end %>
         <!-- <th>docs_deadline</th> -->
         <!-- <th>approve_deadline</th> -->
@@ -70,22 +70,26 @@
             <% end %>
           <% end %>
         </td>
-        <% if can? :manage, :all %>
+        <% if can?(:manage, :all) || can?(:assign_important, Tender) %>
         <td>
           <%= form_for tender, :html => {class: ""} do |f| %>
             <div>
+              <% if can? :assign_important, Tender %>
               <div class="checkbox" style="margin-top: 0;">
                 <%= f.label "important_#{i}" do %>
                 <%= f.check_box :important, class: "", id: "tender_important_#{i}" %>
                 срочный
                 <% end %>
               </div>
+              <% end %>
+              <% if can? :manage, :all %>
               <div class="checkbox">
                 <%= f.label "necessary_#{i}", class: "text-danger" do %>
                 <%= f.check_box :necessary, class: "", id: "tender_necessary_#{i}" %>
                 обязательный!
                 <% end %>
               </div>
+              <% end %>
 
               <div class="form-group">
                 <%= f.submit "Сохранить", class: "btn btn-xs btn-link" %>

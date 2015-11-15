@@ -96,9 +96,9 @@
       <% end %>
     </td>
   </tr>
-  <% if can? :manage, Tender %>
+  <% if can?(:manage, Tender) || can?(:assign_important, Tender) %>
     <tr>
-      <td><b>Администратор</b></td>
+      <td><b>Настройки</b></td>
       <td>
         <%= render partial: "admin_form", locals: {tender: @tender} %>
       </td>

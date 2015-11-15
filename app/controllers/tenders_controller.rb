@@ -23,6 +23,7 @@ class TendersController < ApplicationController
 
   def update
     authorize! :assign_vgo, Tender unless tender_params[:is_vgo].blank?
+    authorize! :assign_important, Tender unless tender_params[:important].blank?
     @tender.update(tender_params)
     @tender.check_pre_sale if tender_params[:necessary] == "1" && current_user.is_admin?
 

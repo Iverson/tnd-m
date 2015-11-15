@@ -1,12 +1,14 @@
 <%= form_for tender, :html => {class: "", style: "width: 240px"} do |f| %>
   <div>
-    <% if can? :manage, :all %>
+    <% if can? :assign_important, Tender %>
     <div class="checkbox">
       <%= f.label :important do %>
       <%= f.check_box :important, class: "" %>
       Отметить как срочный
       <% end %>
     </div>
+    <% end %>
+    <% if can? :manage, :all %>
     <div class="checkbox">
       <%= f.label :necessary, class: "text-danger" do %>
       <%= f.check_box :necessary, class: "" %>

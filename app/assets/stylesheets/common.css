@@ -179,3 +179,7 @@
 .sortable.desc:after {
   content: "↓";
 }
+
+.checkbox:first-child {
+  margin-top: 0;
+}

@@ -24,15 +24,16 @@ ru:
       all: Все
       role: Роли
       user: Пользователи
-      tender: Тендеры
+      tender: Процедуры закупок
       milestone: Этапы
       comment: Комментарии
       performer: Исполнители
       license: Лицензии
       tender_license: Лицензии в тендере
       tender_beneficiary: Бенефициары
-      _tender_vgo: Сверка ВГО (Тендеры)
-      _tender_presale: PRE-SALE (Тендеры)
+      _tender_vgo: Сверка ВГО (процедуры закупок)
+      _tender_presale: PRE-SALE (процедуры закупок)
+      _tender_important: Cрочность (процедуры закупок)
   milestones:
     <<: *crud
     new:

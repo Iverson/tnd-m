@@ -13,7 +13,7 @@
       <ul class="nav navbar-nav navbar-left">
         <li class="<%= "active" if current_page?(tenders_path) %>"><%= link_to "Процедуры закупок", tenders_path %></a></li>
         <% if can? :manage, Performer %>
-        <li class="<%= "active" if current_page?(performers_path) %>"><%= link_to "Исполнители", performers_path %></a></li>
+        <li class="<%= "active" if current_page?(performers_path) %>"><%= link_to "Руководители PRE SALE", performers_path %></a></li>
         <% end %>
         <% if can? :manage, License %>
         <li class="<%= "active" if current_page?(licenses_path) %>"><%= link_to "Лицензии", licenses_path %></a></li>

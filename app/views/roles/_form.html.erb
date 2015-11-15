@@ -19,7 +19,7 @@
     <%= f.fields_for :ability do |ability_form| %>
       <table class="table table-fixed">
         <tr>
-          <td width="100"></td>
+          <td width="160"></td>
           <% @ability["actions"].each do |action| %>
           <td class="text-center"><%= t("ability.actions.#{action}") %></td>
           <% end %>

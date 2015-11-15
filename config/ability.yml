@@ -64,3 +64,5 @@ resources:
     - update
   _tender_presale:
     - update
+  _tender_important:
+    - update
