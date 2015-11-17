@@ -26,13 +26,14 @@
         <!-- <th>Заказчик</th> -->
         <!-- <th width="200">milestones</th> -->
         <th width="120">Ссылка на оф. сайт</th>
-        <th width="100"><%= sortable "start_date" %></th>
-        <th width="140"><%= sortable "end_date" %></th>
-        <th width="140" class="text-right">Начальная макс. цена (млн. руб)</th>
+        <th width="100"><%= sortable "start_date", Tender.human_attribute_name(:start_date) %></th>
+        <th width="100"><%= sortable "end_date", Tender.human_attribute_name(:end_date) %></th>
+        <th width="100"><%= sortable "approve_deadline", Tender.human_attribute_name(:approve_deadline) %></th>
+        <th width="100" class="text-right">Начальная макс. цена (млн. руб)</th>
         <th width="240">Прорабатываем участие?</th>
-        <th width="170">Руководитель PRE-SALE</th>
+        <th width="120">Руководитель PRE-SALE</th>
         <% if can?(:manage, :all) || can?(:assign_important, Tender) %>
-        <th width="170">Настройки</th>
+        <th width="160">Настройки</th>
         <% end %>
         <!-- <th>docs_deadline</th> -->
         <!-- <th>approve_deadline</th> -->
@@ -56,6 +57,7 @@
         <td><%= link_to external_url(tender.url), tender.url, target: "_blank" %></td>
         <td><%= tender.start_date %></td>
         <td><%= tender.end_date %></td>
+        <td><%= tender.approve_deadline %></td>
         <td class="text-right"><%= price(tender.start_max_price) %></td>
         <td class="tenders-table__votes">
           <%= render partial: "shared/votes", locals: {votes: tender.votes.order(value: :desc)} %>

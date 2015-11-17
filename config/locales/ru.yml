@@ -29,7 +29,7 @@ ru:
       comment: Комментарии
       performer: Исполнители
       license: Лицензии
-      tender_license: Лицензии в тендере
+      tender_license: Лицензии в процедурах закупок
       tender_beneficiary: Бенефициары
       _tender_vgo: Сверка ВГО (процедуры закупок)
       _tender_presale: PRE-SALE (процедуры закупок)
@@ -60,8 +60,9 @@ ru:
     attributes:
       tender:
         <<: *default_attributes
-        start_date: Дата начала
-        end_date: Дата завершения приема заявок
+        start_date: Начало приёма заявок
+        end_date: Конец приёма заявок
+        approve_deadline: Срок утверждения Карточки PRE-SALE
       milestone:
         <<: *default_attributes
         performer_id: Ответственный
