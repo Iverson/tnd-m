@@ -28,7 +28,7 @@
   margin-bottom: 3px;
   font-size: 12px;
 }
-  
+
   .commentAuthor .date {
     font-weight: normal;
     margin-left: 5px;
@@ -145,6 +145,13 @@
     .tenders-table__votes .vote-form:first-child {
       margin-top: 0;
     }
+
+  .tenders-table__anchor {
+    position: relative;
+    display: block;
+    top: -60px;
+    font-size: 0;
+  }
 
 .b-tender {}
 

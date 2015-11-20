@@ -11,10 +11,13 @@ class VotesController < ApplicationController
 
   def vote
     @vote.update(vote_params)
+    referer = request.referer
+
     @vote.tender.check_pre_sale if vote_params[:value] == "true" && current_user.is_admin?
+    referer += "##{@vote.tender.id}" if referer.split("?")[0] == tenders_url
 
     respond_to do |format|
-      format.html { redirect_to :back, notice: 'Вы успешно проголосовали.' }
+      format.html { redirect_to referer, notice: 'Вы успешно проголосовали.' }
       format.json { head :no_content }
     end
   end

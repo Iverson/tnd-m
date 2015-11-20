@@ -21,6 +21,7 @@
   <table class="table table-hover table-fixed tenders-table">
     <thead>
       <tr>
+        <th width="35">#</th>
         <!-- <th width="80">Seldon Id</th> -->
         <th>Название</th>
         <!-- <th>Заказчик</th> -->
@@ -43,6 +44,10 @@
     <tbody>
       <% @tenders.each_with_index do |tender, i| %>
       <tr class="<%= 'warning' if tender.important %>">
+        <td>
+          <span class="tenders-table__anchor" id="<%= tender.id %>"></span>
+          <%= link_to tender.id, "##{tender.id}" %>
+        </td>
         <!-- <td>
           <%= tender.seldon_id %>
         </td> -->
