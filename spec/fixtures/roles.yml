@@ -1,0 +1,7 @@
+user:
+  name: User
+  ability: {all: {read: "1"}, comment: {create: "1"}}
+
+admin:
+  name: Admin
+  ability: {all: {manage: "1"}}
