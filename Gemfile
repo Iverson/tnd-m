@@ -54,6 +54,7 @@ group :development, :test do
   # Testing
   gem 'rspec-rails', '~> 3.4.0'
   gem 'factory_girl_rails'
+  gem 'spring-commands-rspec'
   # gem 'capybara'
   # gem 'database_cleaner'
 end
