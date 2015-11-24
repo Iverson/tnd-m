@@ -54,4 +54,12 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+
+  config.before(:all) do
+    @user_role   = create(:role, name: 'User', ability: {all: {read: "1"}, comment: {create: "1"}})
+    @admin_role  = create(:role, name: 'Admin', ability: {all: {manage: "1"}})
+
+    @user  = build(:user, name: 'User', role_id: @user_role.id)
+    @admin = build(:user, name: 'Admin', role_id: @admin_role.id)
+  end
 end
