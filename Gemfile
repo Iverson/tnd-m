@@ -27,7 +27,7 @@ gem 'devise'
 gem 'cancan'
 gem 'roo', '~> 2.1.0'
 gem 'roo-xls'
-gem 'remote_syslog_logger'
+gem 'rollbar', '~> 2.5.0'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
