@@ -1,6 +1,6 @@
 class TendersController < ApplicationController
   helper_method :sort_column, :sort_direction
-  load_and_authorize_resource :tender
+  load_and_authorize_resource :tender, except: :update
   before_action :set_tender, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -22,8 +22,14 @@ class TendersController < ApplicationController
   end
 
   def update
-    authorize! :assign_vgo, Tender unless tender_params[:is_vgo].blank?
-    authorize! :assign_important, Tender unless tender_params[:important].blank?
+    if tender_params[:beneficiary_attributes].blank?
+      authorize! :update, Tender
+      authorize! :assign_vgo, Tender unless tender_params[:is_vgo].blank?
+      authorize! :assign_important, Tender unless tender_params[:important].blank?
+    else
+      authorize! :manage, TenderBeneficiary
+    end
+
     @tender.update(tender_params)
     @tender.check_pre_sale if tender_params[:necessary] == "1" && current_user.is_admin?
 
@@ -91,7 +97,7 @@ class TendersController < ApplicationController
   def sort_column
     Tender.column_names.include?(params[:sort]) ? params[:sort] : nil
   end
-  
+
   def sort_direction
     %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
