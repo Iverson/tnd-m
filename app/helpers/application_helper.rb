@@ -8,7 +8,7 @@ module ApplicationHelper
   end
 
   def price(value)
-    (value / 1000000).round(2)
+    (value / 1000000).round(2) if value.is_a? Numeric
   end
 
   def license_available(license)
