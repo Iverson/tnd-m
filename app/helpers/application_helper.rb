@@ -4,7 +4,7 @@ module ApplicationHelper
   end
 
   def external_url(url)
-    URI.parse(url).host
+    url ? URI.parse(url).host : ""
   end
 
   def price(value)
